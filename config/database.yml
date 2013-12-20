@@ -48,7 +48,7 @@ test:
   encoding: unicode
   database: poolog_test
   pool: 5
-  username: poolog
+  username: tomomichi
   password:
 
 production:
