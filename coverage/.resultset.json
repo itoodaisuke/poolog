@@ -11688,6 +11688,10 @@
         1,
         null
       ],
+      "/Users/tomomichi/Documents/git/poolog/app/helpers/games_helper.rb": [
+        1,
+        null
+      ],
       "/Users/tomomichi/Documents/git/poolog/vendor/bundle/ruby/2.0.0/gems/devise-3.2.2/app/helpers/devise_helper.rb": [
         1,
         null,
@@ -12895,6 +12899,6 @@
         null
       ]
     },
-    "timestamp": 1387594884
+    "timestamp": 1387597037
   }
 }

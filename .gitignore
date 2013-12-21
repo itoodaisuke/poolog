@@ -12,7 +12,14 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
+.DS_Store
 /log/*.log
 /tmp
 /vendor/bundle
-.DS_Store
+.secret
+doc/
+*.swp
+*~
+.project
+.idea
+.secret
