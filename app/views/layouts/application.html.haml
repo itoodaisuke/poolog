@@ -24,7 +24,7 @@
         = menu_item "Home"
         = menu_item "About"
         = menu_item "Conact"
-      - menu_group :pull=>:right do
+      - menu_group pull: :right do
         - if user_signed_in?
           = menu_text do
             Logged in as
