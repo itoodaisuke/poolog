@@ -15,6 +15,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'therubyracer', platforms: :ruby
 gem 'less-rails'
 gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'
+gem 'simple_form', git: 'https://github.com/plataformatec/simple_form.git'
 
 #User Authentication
 gem 'devise'

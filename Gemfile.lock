@@ -9,6 +9,14 @@ GIT
       rails (>= 3.1)
       railties (>= 3.1)
 
+GIT
+  remote: https://github.com/plataformatec/simple_form.git
+  revision: 6ce9a15a5abbd17f82fe4a0173fcfe676b0a2138
+  specs:
+    simple_form (3.0.1)
+      actionpack (>= 4.0.0, < 4.1)
+      activemodel (>= 4.0.0, < 4.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -292,6 +300,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 4.0.0)
   sdoc
+  simple_form!
   simplecov
   spring
   spring-commands-rspec
