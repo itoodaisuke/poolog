@@ -16,7 +16,12 @@
         %td= link_to game.id, game_path(game)
         %td= game.name
         %td= game.date
-        %td= game.place
+        -# %td= game.place
+        - if game.users.first
+          %td
+            %img(src="https://graph.facebook.com/#{game.users.first.uid}/picture?type=square")
+        - else
+          %td
         %td=l game.created_at
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_game_path(game), :class => 'btn btn-default btn-xs'

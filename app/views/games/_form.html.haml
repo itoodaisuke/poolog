@@ -2,6 +2,7 @@
   = f.input :name
   = f.input :date
   = f.input :place
+  = f.association :users, as: :select
   .form-actions.col-sm-offset-2.col-sm-10
     = f.button :submit, :class => 'btn-primary'
     = link_to t('.cancel', :default => t("helpers.links.cancel")), games_path, :class => 'btn btn-default'
