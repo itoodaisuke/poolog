@@ -6,9 +6,8 @@
     %meta(name="viewport" content="width=device-width, initial-scale=1.0")
     %title= content_for?(:title) ? yield(:title) : "Poolog"
     = csrf_meta_tags
-    / Le HTML5 shim, for IE6-8 support of HTML elements
-    /[if lt IE 9]
-      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
+    = render 'layouts/shim'
+
     = stylesheet_link_tag "application", :media => "all"
     = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
     = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
@@ -17,23 +16,8 @@
     = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
     = javascript_include_tag "application"
 
-
   %body
-    = nav_bar :responsive=>true, :fixed=>:top, :brand=>"poolog" do
-      - menu_group do
-        = menu_item "Home"
-        = menu_item "About"
-        = menu_item "Conact"
-      - menu_group pull: :right do
-        - if user_signed_in?
-          = menu_text do
-            Logged in as
-            %strong #{current_user.email}
-          = menu_item 'Edit profile', edit_user_registration_path
-          = menu_item "Logout", destroy_user_session_path, method: :delete
-        - else
-          = menu_item "Sign up", new_user_registration_path
-          = menu_item "Login", new_user_session_path
+    = render 'layouts/header'
     .container
       .row
         .col-lg-9
@@ -47,5 +31,4 @@
               %li= link_to "Link 1", "/path1"
               %li= link_to "Link 2", "/path2"
               %li= link_to "Link 3", "/path3"
-      %footer
-        %p &copy; Company 2013
+    = render 'layouts/footer'
