@@ -1,6 +1,6 @@
 = simple_form_for @game, html: {class: 'form-horizontal'} do |f|
   = f.input :name
-  = f.input :date
+  = f.input :date, as: :newdate, placeholder: 'mm/dd/yyyy'
   = f.input :place
   = f.association :users, as: :select
   .form-actions.col-sm-offset-2.col-sm-10
