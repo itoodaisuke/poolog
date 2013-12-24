@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'quiet_assets'
+gem 'faker'
 
 #Bootstrap
 gem 'therubyracer', platforms: :ruby
