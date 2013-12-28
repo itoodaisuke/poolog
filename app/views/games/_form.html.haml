@@ -1,7 +1,7 @@
 = simple_form_for @game, html: {class: 'form-horizontal'} do |f|
   = f.input :name
   = f.input :date, as: :calendar, placeholder: 'mm/dd/yyyy'
-  = f.input :place
+  = f.input :place, collection: @venues.groups[0].items
   = f.association :users, as: :select
   .form-actions.col-sm-offset-2.col-sm-10
     = f.button :submit, class: 'btn-primary'

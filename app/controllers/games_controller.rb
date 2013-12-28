@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_venues, only: [:new]
 
   # GET /games
   # GET /games.json
@@ -70,5 +71,10 @@ class GamesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
       params.require(:game).permit(:name, :date, :place, :user_ids => [])
+    end
+
+    def set_venues
+      place = Place.new
+      @venues = place.search_venues
     end
 end
