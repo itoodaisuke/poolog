@@ -3,10 +3,8 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
-  has_many :game_members
-  has_many :games, through: :game_members
-  has_many :match_members
-  has_many :matches, through: :match_members
+  has_many :game_records
+  has_many :games, through: :game_records
 
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
