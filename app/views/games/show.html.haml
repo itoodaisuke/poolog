@@ -3,6 +3,10 @@
   %h1=t '.title', :default => model_class.model_name.human.titleize
 
 %p
+  %strong= model_class.human_attribute_name(:date) + ':'
+  %br
+  = @game.date
+%p
   %strong= model_class.human_attribute_name(:rule) + ':'
   %br
   = @game.rule

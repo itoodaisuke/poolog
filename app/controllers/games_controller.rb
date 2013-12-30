@@ -70,7 +70,7 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:rule, :video_id, :place_id)
+      params.require(:game).permit(:rule, :video_id, :place_id, :user_ids=>[])
     end
 
     def set_venues
