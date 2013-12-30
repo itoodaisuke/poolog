@@ -17,9 +17,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: poolog
+  database: poolog_development
   pool: 5
-  username: tomomichi
+  username: poolog
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -48,7 +48,7 @@ test:
   encoding: unicode
   database: poolog_test
   pool: 5
-  username: tomomichi
+  username: poolog
   password:
 
 production:

@@ -1,6 +1,5 @@
 class DropPartiesTable < ActiveRecord::Migration
   def self.up
-    drop_table :parties
     drop_table :parties_users
   end
 
