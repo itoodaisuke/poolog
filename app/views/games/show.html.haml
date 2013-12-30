@@ -3,18 +3,17 @@
   %h1=t '.title', :default => model_class.model_name.human.titleize
 
 %p
-  %strong= model_class.human_attribute_name(:name) + ':'
+  %strong= model_class.human_attribute_name(:rule) + ':'
   %br
-  = @game.name
+  = @game.rule
 %p
-  %strong= model_class.human_attribute_name(:date) + ':'
+  %strong= model_class.human_attribute_name(:video_id) + ':'
   %br
-  = @game.date
+  = @game.video_id
 %p
-  %strong= model_class.human_attribute_name(:place) + ':'
+  %strong= model_class.human_attribute_name(:place_id) + ':'
   %br
-  = @game.place
-
+  = @game.place_id
 
 = link_to t('.back', :default => t("helpers.links.back")), games_path, :class => 'btn btn-default'
 = link_to t('.edit', :default => t("helpers.links.edit")), edit_game_path(@game), :class => 'btn btn-default'
