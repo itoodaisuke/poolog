@@ -39,6 +39,11 @@ group :development do
   gem 'erb2haml'
 end
 
+group :test do
+  gem 'selenium-webdriver'
+  gem 'capybara'
+end
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'guard-rspec'
