@@ -16,7 +16,14 @@ describe "Games" do
   end
 
   describe "new page" do
-    before { visit new_game_path }
+    let(:user) { FactoryGirl.create(:user) }
+    before {
+      visit new_user_session_path
+      fill_in 'user[email]', with: user.email
+      fill_in 'user[password]', with: user.password
+      click_button 'Sign in'
+      visit new_game_path
+    }
     subject { page }
     let(:heading) { 'New Game' }
     let(:page_title) { 'New Game' }
