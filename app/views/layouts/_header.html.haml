@@ -2,12 +2,26 @@
   = menu_group pull: :right do
     - if user_signed_in?
       = menu_text do
-        Logged in as
-        %strong #{current_user.email}
-      = menu_item 'Edit profile', edit_user_registration_path
-      = menu_item "Logout", destroy_user_session_path, method: :delete
+        = profile_img(current_user)
+        = current_user.email
     - else
       = menu_item "Sign up", new_user_registration_path
       = menu_item "Login", new_user_session_path
+    %li
+      %i.icon-bar-chart
+      = link_to "Record".html_safe, new_game_path
+    %li
+      %i.icon-user
+      = link_to "Friend".html_safe, new_game_path
+    %li
+      %i.icon-facetime-video
+      = link_to "Video".html_safe, new_game_path
+    %li
+      %i.icon-group
+      = link_to "Group".html_safe, new_game_path
+    - if user_signed_in?
+      %li
+        %i.icon-signout
+        = link_to "Logout".html_safe, destroy_user_session_path, method: :delete
 %div.navbar-rightbutton.visible-xs
   = link_to "<i class='icon-plus'></i>".html_safe, new_game_path

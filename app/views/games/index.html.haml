@@ -16,7 +16,7 @@
       - if game.users.first
         = link_to game_path(game) do
           %li.clearfix
-            = gravatar_for(game.users.first)
+            = profile_img(game.users.first)
             %p
               = game.users.first.name
             %p
