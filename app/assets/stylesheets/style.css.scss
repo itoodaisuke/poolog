@@ -1,13 +1,112 @@
-body {
-  padding-top: 70px;
-}
-@media (max-width: 980px) {
-  body { padding-top: 30px; }
-}
-a.btn:visited { color: #333; }
-a.btn-danger:visited { color: #fff; }
-a.btn-primary:visited { color: #fff; }
+/*****************************************************************
+* Common
+*****************************************************************/
+$WET-ASPHALT: #34495E;
+$ALIZARIN: #E74C3C;
+$POMEGRANATE: #C0392B;
+$TURQUOISE: #1ABC9C;
 
-footer {
-  text-align: center;
+/* List View */
+.list {
+  padding: 0;
+  margin: 0;
+
+  a, a:hover, a:visited {
+    color: $WET-ASPHALT;
+    text-decoration: none;
+  }
+
+  li {
+    list-style: none;
+    border-bottom: 1px solid #efefef;
+    position: relative;
+    &:hover {
+      background: rgba(26,188,156,0.1);
+      a { text-decoration: none; }
+    }
+  }
+  p {
+    display: inline-block;
+    width: 35%;
+  }
+  p:nth-child(3) {
+    width: 20%;
+    strong {
+      color: $ALIZARIN;
+    }
+  }
+  img {
+    max-width: 20%;
+  }
+  i:last-child {
+    color: #efefef;
+    position: absolute;
+    right: 10px;
+    line-height: 80px;
+  }
 }
+
+
+/*****************************************************************
+* Switch Nav
+*****************************************************************/
+#switch-nav {
+  width: 90%;
+  margin: auto;
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  a, a:visited {
+    color: $TURQUOISE;
+  }
+
+  a {
+    li {
+      display: block;
+      float: left;
+      width: 50%;
+      height: 30px;
+      border: 1px solid $TURQUOISE;
+      text-align: center;
+      line-height: 30px;
+
+      &.active, &:hover {
+        background: $TURQUOISE;
+        color: #fff;
+        a, a:visited {
+          color: #fff;
+        }
+      }
+    }
+  }
+  a:first-child {
+    li {
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+  }
+  a:last-child {
+    li {
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+  }
+}
+
+/*****************************************************************
+* Game Index
+*****************************************************************/
+#game-index {
+  h3 {
+    color: #fff;
+    background: $WET-ASPHALT;
+    padding: 10px 0 10px 10px;
+    margin-bottom: 0;
+    font-size: large;
+  }
+
+}
+

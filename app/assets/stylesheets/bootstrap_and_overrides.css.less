@@ -27,3 +27,88 @@
 //
 // Example:
 // @linkColor: #ff0000;
+
+
+@WET-ASPHALT: #34495E;
+@ALIZARIN: #E74C3C;
+@POMEGRANATE: #C0392B;
+@TURQUOISE: #1ABC9C;
+
+
+/*****************************************************************
+* Modify Bootstrap
+*****************************************************************/
+body {
+  padding-top: 70px;
+  color: @WET-ASPHALT;
+}
+@media (max-width: 980px) {
+  body { padding-top: 30px; }
+}
+a.btn:visited { color: #333; }
+a.btn-danger:visited { color: #fff; }
+a.btn-primary:visited { color: #fff; }
+
+footer {
+  text-align: center;
+}
+
+
+@media (max-width: @screen-xs-max) {
+  //CONTAINER
+  .container, .col-lg-9 {
+    margin: 0;
+    padding: 0;
+  }
+  .row {
+    margin: 50px 0 0 0;
+  }
+
+  //NAVBAR
+  .navbar-default .navbar-toggle {
+    float: none;
+    position: fixed;
+    left: 5px;
+    border: none;
+    & .icon-bar {
+      background-color: @WET-ASPHALT;
+    }
+    &:hover, &:focus {
+      background: none;
+      border: none;
+    }
+  }
+
+  .navbar-brand {
+    float: none;
+    line-height: 50px;
+  }
+
+  .navbar-header {
+    text-align: center;
+  }
+
+  .navbar-rightbutton {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    z-index: 1050;
+
+    a, a:visited {
+      display: block;
+      background: @ALIZARIN;
+      color: #fff;
+      width: 45px;
+      height: 30px;
+      border-radius: 3px;
+      text-align: center;
+      font-size: 1.5em;
+      line-height: 30px;
+    }
+    a:hover {
+      background: @POMEGRANATE;
+      text-decoration: none;
+    }
+  }
+
+}

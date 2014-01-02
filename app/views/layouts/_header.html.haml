@@ -9,3 +9,5 @@
     - else
       = menu_item "Sign up", new_user_registration_path
       = menu_item "Login", new_user_session_path
+%div.navbar-rightbutton.visible-xs
+  = link_to "<i class='icon-plus'></i>".html_safe, new_game_path
