@@ -1,5 +1,6 @@
 Poolog::Application.routes.draw do
-  root to: redirect("/games")
+  get "static_pages/home"
+  root to: "static_pages#home"
   resources :games
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }, path_names: { sign_in: 'signin', sign_out: 'signout', sign_up: 'signup'}
   # The priority is based upon order of creation: first created -> highest priority.
