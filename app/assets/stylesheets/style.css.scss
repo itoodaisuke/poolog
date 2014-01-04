@@ -10,12 +10,54 @@ $screen-xs-max: 480px;
 $screen-sm-min: 481px;
 
 /* Form */
-select.form-control, select.form-control:focus {
+select.form-control, select.form-control:focus,
+input.url.form-control, input.url.form-control:focus {
+  height: 45px;
+  cursor: pointer;
+  padding-left: 40px;
   background: none;
   border: none;
   box-shadow: none;
   -webkit-appearance: none;
 }
+input.url.form-control, input.url.form-control:focus {
+  cursor: text;
+}
+.form-horizontal .form-group {
+  margin: 0;
+}
+.form-actions {
+  margin-top: 20px;
+}
+.select div:after {
+  content: "\f107"; //angle-down
+  display: inline-block;
+  position: absolute;
+  line-height: 45px;
+  right: 15px;
+  top: 0;
+  color: #efefef;
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 2em;
+}
+
+.form-group .form-group div:before {
+  display: inline-block;
+  position: absolute;
+  line-height: 45px;
+  left: 15px;
+  top: 0;
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+}
+.place .form-group div:before { content: "\f041"; }
+.member .form-group div:before { content: "\f007"; }
+.rule .form-group div:before { content: "\f02b"; }
+.video .form-group div:before { content: "\f03d"; }
+
 
 h3 {
   color: #fff;

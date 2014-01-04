@@ -1,16 +1,17 @@
-= simple_form_for @game, html: {class: 'form-horizontal'} do |f|
-  -# Hidden Parameters
-  = f.simple_fields_for :game_records do |u|
-    = u.association :user, as: :hidden, input_html: { value: current_user.id }
-  = f.input :date, as: :hidden, input_html: {value: Date.today}
+%ul.list
+  = simple_form_for @game, html: {class: 'form-horizontal'} do |f|
+    -# Hidden Parameters
+    = f.simple_fields_for :game_records do |u|
+      = u.association :user, as: :hidden, input_html: { value: current_user.id }, label: false
+    = f.input :date, as: :hidden, input_html: {value: Date.today}, label: false
 
-  -# Open Parameters
-  = f.input :place_id, collection: @venues.groups[0].items
-  = f.input :rule, collection: ['Eight-ball', 'Nine-ball']
-  = f.input :video_id, as: :url
-  = f.simple_fields_for :game_records do |u|
-    = u.association :user, as: :select
-    = u.input :winner
-  .form-actions.col-sm-offset-2.col-sm-10
-    = f.button :submit, class: 'btn-primary'
-    = link_to t('.cancel', default: t("helpers.links.cancel")), games_path, class: 'btn btn-default'
+    -# Open Parameters
+    %li= f.input :place_id, collection: @venues.groups[0].items, label: false, wrapper_html: {class: 'place'}
+    %li= f.input :rule, collection: ['Eight-ball', 'Nine-ball'], label: false, wrapper_html: {class: 'rule'}
+    %li= f.input :video_id, as: :url, label: false, wrapper_html: {class: 'video'}, placeholder: 'Youtube Video URL'
+    = f.simple_fields_for :game_records do |u|
+      %li= u.association :user, as: :select, label: false, wrapper_html: {class: 'member'}
+      %li= u.input :winner, label: false, wrapper_html: {class: 'winner'}
+    .form-actions
+      = f.button :submit, class: 'btn-primary'
+      = link_to t('.cancel', default: t("helpers.links.cancel")), games_path, class: 'btn btn-default'

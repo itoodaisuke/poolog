@@ -9,7 +9,7 @@ SimpleForm.setup do |config|
     b.use :placeholder
     b.use :label
     b.wrapper tag: 'div', class: 'form-group' do |ba|
-      ba.use :input, wrap_with: { tag: 'div', class: 'col-sm-6' }
+      ba.use :input, wrap_with: { tag: 'div' }
       ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
       ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
     end
