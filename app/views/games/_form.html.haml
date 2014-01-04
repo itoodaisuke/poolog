@@ -1,12 +1,16 @@
 = simple_form_for @game, html: {class: 'form-horizontal'} do |f|
-  = f.association :users, as: :hidden, input_html: {name: 'game[user_ids][]', value: current_user.id}
+  -# Hidden Parameters
+  = f.simple_fields_for :game_records do |u|
+    = u.association :user, as: :hidden, input_html: { value: current_user.id }
   = f.input :date, as: :hidden, input_html: {value: Date.today}
+
+  -# Open Parameters
   = f.input :place_id, collection: @venues.groups[0].items
   = f.input :rule, collection: ['Eight-ball', 'Nine-ball']
   = f.input :video_id, as: :url
-  -# = f.association :users, as: :select, input_html: {multiple: false, name: 'game[user_ids][]'}
   = f.simple_fields_for :game_records do |u|
-    = u.association :user, as: :select, input_html: {multiple: false, name: 'game[user_ids][]'}
+    -# = u.association :user, as: :select, input_html: {multiple: false, name: 'game[user_ids][]'}
+    = u.association :user, as: :select
     = u.input :winner
   .form-actions.col-sm-offset-2.col-sm-10
     = f.button :submit, class: 'btn-primary'

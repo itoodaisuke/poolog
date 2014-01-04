@@ -17,6 +17,7 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+    @game.game_records.build
   end
 
   # GET /games/1/edit
@@ -28,6 +29,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
 
+    puts params
     respond_to do |format|
       if @game.save
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
@@ -71,7 +73,7 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:rule, :video_id, :place_id, :user_ids=>[])
+      params.require(:game).permit(:rule, :video_id, :place_id, game_records_attributes: [:user_id, :winner, :score])
     end
 
     def set_venues
