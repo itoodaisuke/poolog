@@ -1,7 +1,9 @@
 Poolog::Application.routes.draw do
   get "static_pages/home"
   root to: "static_pages#home"
-  resources :games
+  resources :games do
+    get 'page/:page', :action => :index, :on => :collection
+  end
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }, path_names: { sign_in: 'signin', sign_out: 'signout', sign_up: 'signup'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
