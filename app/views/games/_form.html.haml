@@ -3,7 +3,9 @@
     -# Hidden Parameters
     = f.simple_fields_for :game_records do |u|
       = u.association :user, as: :hidden, input_html: { value: current_user.id }, label: false
-    = f.input :date, as: :hidden, input_html: {value: Date.today}, label: false
+    = f.simple_fields_for :party do |p|
+      %li= p.input :date, as: :calendar, input_html: {name: 'parties_attributes[date]', value: Date.today}, label: false, wrapper_html: {class: 'calendar'}
+      = p.input :user_id, as: :hidden, input_html: {name: 'parties_attributes[user_id]', value: current_user.id}
 
     -# Open Parameters
     %li= f.input :place_id, collection: @venues.groups[0].items, label: false, wrapper_html: {class: 'place'}

@@ -11,6 +11,7 @@ $screen-sm-min: 481px;
 
 /* Form */
 select.form-control, select.form-control:focus,
+input[type=date], input[type=date]:focus,
 input.url.form-control, input.url.form-control:focus {
   height: 45px;
   cursor: pointer;
@@ -20,9 +21,9 @@ input.url.form-control, input.url.form-control:focus {
   box-shadow: none;
   -webkit-appearance: none;
 }
-input.url.form-control, input.url.form-control:focus {
-  cursor: text;
-}
+input.url.form-control, input.url.form-control:focus { cursor: text; }
+input[type="date"].form-control, input[type="date"].form-control:focus { cursor: auto; }
+
 .form-horizontal .form-group {
   margin: 0;
 }
@@ -57,6 +58,7 @@ input.url.form-control, input.url.form-control:focus {
 .member .form-group div:before { content: "\f007"; }
 .rule .form-group div:before { content: "\f02b"; }
 .video .form-group div:before { content: "\f03d"; }
+.calendar .form-group div:before { content: "\f073"; }
 
 
 h3 {
