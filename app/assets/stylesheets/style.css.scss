@@ -6,6 +6,25 @@ $ALIZARIN: #E74C3C;
 $POMEGRANATE: #C0392B;
 $TURQUOISE: #1ABC9C;
 
+$screen-xs-max: 480px;
+$screen-sm-min: 481px;
+
+/* Form */
+select.form-control, select.form-control:focus {
+  background: none;
+  border: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+}
+
+h3 {
+  color: #fff;
+  background: $WET-ASPHALT;
+  padding: 10px 0 10px 10px;
+  margin-bottom: 0;
+  font-size: large;
+}
+
 /* List View */
 .list {
   padding: 0;
@@ -20,11 +39,14 @@ $TURQUOISE: #1ABC9C;
     list-style: none;
     border-bottom: 1px solid #efefef;
     position: relative;
+  }
+  a li {
     &:hover {
       background: rgba(26,188,156,0.1);
       a { text-decoration: none; }
     }
   }
+
   p {
     display: inline-block;
     width: 35%;
@@ -39,7 +61,7 @@ $TURQUOISE: #1ABC9C;
     width: 75px;
     height: 75px;
   }
-  i:last-child {
+  .arrow-link {
     color: #efefef;
     position: absolute;
     right: 10px;
@@ -155,7 +177,7 @@ $TURQUOISE: #1ABC9C;
 *****************************************************************/
 #switch-nav {
   width: 90%;
-  margin: auto;
+  margin: 20px auto 0;
 
   ul {
     margin: 0;
@@ -202,15 +224,6 @@ $TURQUOISE: #1ABC9C;
 /*****************************************************************
 * Game Index
 *****************************************************************/
-#game-index {
-  h3 {
-    color: #fff;
-    background: $WET-ASPHALT;
-    padding: 10px 0 10px 10px;
-    margin-bottom: 0;
-    font-size: large;
-  }
-}
 
 
 /*****************************************************************
@@ -224,6 +237,10 @@ $TURQUOISE: #1ABC9C;
   padding-bottom: 50% ;
   overflow: hidden ;
 
+  @media (max-width: $screen-xs-max) {
+    margin-top: 0;
+  }
+
   iframe {
     border: none;
     position: absolute ;
@@ -232,4 +249,36 @@ $TURQUOISE: #1ABC9C;
     height: 100% ;
     width: 100% ;
   }
+}
+
+#game-show {
+  li {
+    padding: 15px;
+    font-size: 1.2em;
+    i { margin-right: 5px; }
+  }
+  .result {
+    p {
+      display: block;
+      width: auto;
+    }
+    img { width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    div {
+      width: 50%;
+      float: left;
+      text-align: center;
+      p:last-child {
+        border: 1px solid $TURQUOISE;
+        color: $TURQUOISE;
+        &.win {
+          background: $TURQUOISE;
+          color: white;
+        }
+      }
+    }
+  }
+
 }
