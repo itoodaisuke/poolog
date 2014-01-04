@@ -50,6 +50,7 @@ $TURQUOISE: #1ABC9C;
 /* Sidr */
 .sidr {
   box-shadow: none;
+  ul { margin: 0; }
   ul, ul li, ul li a, ul li:hover a {
     box-shadow: none;
     border-top: none;

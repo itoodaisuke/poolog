@@ -57,6 +57,31 @@ ul {
 }
 
 
+//PC Display
+@media (min-width: @screen-sm-min) {
+  .navbar-default .navbar-nav li a {
+    display: inline-block;
+    padding: 15px 20px 15px 5px;
+  }
+
+  .navbar-brand {
+    margin-right: 20px;
+  }
+
+  .navbar-text {
+    position: relative;
+    height: 20px;
+    img {
+      position: absolute;
+      height: 30px;
+      left: -35px;
+      top: -5px;
+      border-radius: 50%;
+    }
+  }
+}
+
+//SP Display
 @media (max-width: @screen-xs-max) {
   //CONTAINER
   .container, .col-lg-9 {
@@ -83,6 +108,9 @@ ul {
     }
   }
 
+  ul.nav.navbar-nav.pull-left {
+    float: none !important;
+  }
   .navbar-brand {
     float: none;
     line-height: 50px;

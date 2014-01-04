@@ -4,9 +4,13 @@
       = menu_text do
         = profile_img(current_user)
         = current_user.email
+      %li
+        %i.icon-signout
+        = link_to "Logout".html_safe, destroy_user_session_path, method: :delete
     - else
       = menu_item "Sign up", new_user_registration_path
       = menu_item "Login", new_user_session_path
+  = menu_group pull: :left do
     %li
       %i.icon-bar-chart
       = link_to "Record".html_safe, new_game_path
@@ -19,9 +23,5 @@
     %li
       %i.icon-group
       = link_to "Group".html_safe, new_game_path
-    - if user_signed_in?
-      %li
-        %i.icon-signout
-        = link_to "Logout".html_safe, destroy_user_session_path, method: :delete
 %div.navbar-rightbutton.visible-xs
   = link_to "<i class='icon-plus'></i>".html_safe, new_game_path

@@ -4,7 +4,10 @@
   = f.input :place_id, collection: @venues.groups[0].items
   = f.input :rule, collection: ['Eight-ball', 'Nine-ball']
   = f.input :video_id, as: :url
-  = f.association :users, as: :select, input_html: {multiple: false, name: 'game[user_ids][]'}
+  -# = f.association :users, as: :select, input_html: {multiple: false, name: 'game[user_ids][]'}
+  = f.simple_fields_for :game_records do |u|
+    = u.association :user, as: :select, input_html: {multiple: false, name: 'game[user_ids][]'}
+    = u.input :winner
   .form-actions.col-sm-offset-2.col-sm-10
     = f.button :submit, class: 'btn-primary'
     = link_to t('.cancel', default: t("helpers.links.cancel")), games_path, class: 'btn btn-default'
