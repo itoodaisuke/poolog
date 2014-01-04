@@ -15,6 +15,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'quiet_assets'
 gem 'faker'
 gem 'foursquare2'
+gem 'kaminari'
 
 #Bootstrap
 gem 'therubyracer', platforms: :ruby

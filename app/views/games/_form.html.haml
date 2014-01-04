@@ -9,7 +9,6 @@
   = f.input :rule, collection: ['Eight-ball', 'Nine-ball']
   = f.input :video_id, as: :url
   = f.simple_fields_for :game_records do |u|
-    -# = u.association :user, as: :select, input_html: {multiple: false, name: 'game[user_ids][]'}
     = u.association :user, as: :select
     = u.input :winner
   .form-actions.col-sm-offset-2.col-sm-10
