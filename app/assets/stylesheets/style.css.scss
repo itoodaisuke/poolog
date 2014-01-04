@@ -83,6 +83,16 @@ $TURQUOISE: #1ABC9C;
 }
 
 
+/* Kaminari */
+#game-index div:last-child {
+  text-align: center;
+  .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    background-color: $TURQUOISE;
+    border-color: $TURQUOISE;
+  }
+}
+
+
 /*****************************************************************
 * Static Pages
 *****************************************************************/
