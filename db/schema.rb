@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140106072810) do
+ActiveRecord::Schema.define(version: 20140106152235) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20140106072810) do
     t.string   "rule"
     t.string   "video_id"
     t.string   "place_id"
-    t.date     "date"
     t.integer  "party_id"
   end
 
@@ -40,18 +39,19 @@ ActiveRecord::Schema.define(version: 20140106072810) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "place_id"
+    t.string   "foursquare_id"
   end
 
   add_index "parties", ["date", "user_id"], name: "index_parties_on_date_and_user_id", unique: true, using: :btree
 
-  create_table "places", force: true do |t|
+  create_table "places", id: false, force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "places"
-    t.string   "foursquare_id"
+    t.string   "foursquare_id", null: false
   end
+
+  add_index "places", ["foursquare_id"], name: "index_places_on_foursquare_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                            default: "", null: false

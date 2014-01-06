@@ -30,7 +30,7 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.party = Party.where(user_id: current_user.id).where(date: party_params[:date]).first || @game.build_party(party_params)
-    @game.party.set_place(party_params[:place_id])
+    @game.party.place = Place.where(foursquare_id: place_params[:foursquare_id]).first || @game.party.build_place(place_params)
 
     redirect_to new_game_path
     # respond_to do |format|
@@ -81,7 +81,11 @@ class GamesController < ApplicationController
     end
 
     def party_params
-      params.require(:game).require(:party_attributes).permit(:id, :date, :user_id, :place_id)
+      params.require(:game).require(:party_attributes).permit(:id, :date, :user_id)
+    end
+
+    def place_params
+      params.require(:game).require(:party_attributes).require(:place).permit(:foursquare_id, :name)
     end
 
     def set_venues
