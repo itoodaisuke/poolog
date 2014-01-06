@@ -30,17 +30,18 @@ class GamesController < ApplicationController
   def create
     @game = Game.new(game_params)
     @game.party = Party.where(user_id: current_user.id).where(date: party_params[:date]).first || @game.build_party(party_params)
-    # party.update_attribute(place: party_params[:place_id]) if party.place_changed?
+    @game.party.set_place(party_params[:place_id])
 
-    respond_to do |format|
-      if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @game }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to new_game_path
+    # respond_to do |format|
+    #   if @game.save
+    #     format.html { redirect_to @game, notice: 'Game was successfully created.' }
+    #     format.json { render action: 'show', status: :created, location: @game }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @game.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   # PATCH/PUT /games/1
@@ -76,11 +77,11 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:rule, :video_id, :place_id, game_records_attributes: [:user_id, :winner, :score])
+      params.require(:game).permit(:rule, :video_id, game_records_attributes: [:user_id, :winner, :score])
     end
 
     def party_params
-      params.require(:parties_attributes).permit(:id, :date, :user_id, :place_id)
+      params.require(:game).require(:party_attributes).permit(:id, :date, :user_id, :place_id)
     end
 
     def set_venues

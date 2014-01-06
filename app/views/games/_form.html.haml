@@ -4,11 +4,11 @@
     = f.simple_fields_for :game_records do |u|
       = u.association :user, as: :hidden, input_html: { value: current_user.id }, label: false
     = f.simple_fields_for :party do |p|
-      %li= p.input :date, as: :calendar, input_html: {name: 'parties_attributes[date]', value: Date.today}, label: false, wrapper_html: {class: 'calendar'}
-      = p.input :user_id, as: :hidden, input_html: {name: 'parties_attributes[user_id]', value: current_user.id}
+      %li= p.input :date, as: :calendar, input_html: {value: Date.today}, label: false, wrapper_html: {class: 'calendar'}
+      %li= p.input :place_id, collection: @venues.groups[0].items, label: false, wrapper_html: {class: 'place'}
+      = p.input :user_id, as: :hidden, input_html: {value: current_user.id}
 
     -# Open Parameters
-    %li= f.input :place_id, collection: @venues.groups[0].items, label: false, wrapper_html: {class: 'place'}
     %li= f.input :rule, collection: ['Eight-ball', 'Nine-ball'], label: false, wrapper_html: {class: 'rule'}
     %li= f.input :video_id, as: :url, label: false, wrapper_html: {class: 'video'}, placeholder: 'Youtube Video URL'
     = f.simple_fields_for :game_records do |u|
