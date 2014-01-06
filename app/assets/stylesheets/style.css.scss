@@ -67,6 +67,7 @@ h3 {
   padding: 10px 0 10px 10px;
   margin-bottom: 0;
   font-size: large;
+  margin-top: 0;
 }
 
 /* List View */
@@ -221,7 +222,10 @@ h3 {
 *****************************************************************/
 #switch-nav {
   width: 90%;
-  margin: 20px auto 0;
+  margin: 20px auto;
+  @media (min-width: $screen-sm-min) {
+    margin-top: 0;
+  }
 
   ul {
     margin: 0;
