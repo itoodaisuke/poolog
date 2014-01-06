@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140102143642) do
+ActiveRecord::Schema.define(version: 20140104082345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,17 @@ ActiveRecord::Schema.define(version: 20140102143642) do
     t.string   "video_id"
     t.string   "place_id"
     t.date     "date"
+    t.integer  "party_id"
   end
+
+  create_table "parties", force: true do |t|
+    t.date     "date"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "parties", ["date", "user_id"], name: "index_parties_on_date_and_user_id", unique: true, using: :btree
 
   create_table "places", force: true do |t|
     t.string   "name"

@@ -1,5 +1,5 @@
 class Place < ActiveRecord::Base
-  has_many :games
+  has_many :parties
 
   def search_venues(ll=nil)
     @foursquare ||= Foursquare2::Client.new(:client_id => ENV['FOURSQUARE_KEY'], :client_secret => ENV['FOURSQUARE_SECRET'])
