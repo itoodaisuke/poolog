@@ -32,16 +32,16 @@ class GamesController < ApplicationController
     @game.party = Party.where(user_id: current_user.id).where(date: party_params[:date]).first || @game.build_party(party_params)
     @game.party.place = Place.where(foursquare_id: place_params[:foursquare_id]).first || @game.party.build_place(place_params)
 
-    redirect_to new_game_path
-    # respond_to do |format|
-    #   if @game.save
-    #     format.html { redirect_to @game, notice: 'Game was successfully created.' }
-    #     format.json { render action: 'show', status: :created, location: @game }
-    #   else
-    #     format.html { render action: 'new' }
-    #     format.json { render json: @game.errors, status: :unprocessable_entity }
-    #   end
-    # end
+    # redirect_to new_game_path
+    respond_to do |format|
+      if @game.save
+        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+        format.json { render action: 'show', status: :created, location: @game }
+      else
+        format.html { render action: 'new' }
+        format.json { render json: @game.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   # PATCH/PUT /games/1

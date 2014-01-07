@@ -1,7 +1,7 @@
 - model_class = Game
 
 %section#game-show
-  %h3 Dec 13, 2013
+  %h3= @game.party.date.strftime("%b %d, %Y")
   %ul.list
     %li.result.clearfix
       %div
@@ -18,15 +18,15 @@
           LOSE
     %li
       %i.icon-calendar
-      %span= @game.date
+      %span= @game.party.date
     %li
       %i.icon-tag
       %span= @game.rule
     %li
       %i.icon-map-marker
-      %span= @game.place_id
+      %span= @game.party.foursquare_id
 
-  - if @game.video_id
+  - if @game.video_id.present?
     %div.youtube-wrapper
       %iframe(src="//www.youtube-nocookie.com/embed/#{@game.video_id}?rel=0" allowfullscreen)
 
