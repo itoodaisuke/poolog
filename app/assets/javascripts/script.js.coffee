@@ -16,3 +16,6 @@ jQuery ->
           $('.navbar-rightbutton').css('position', 'fixed');
         , 150
   });
+
+  $('.place').click ->
+    $('#myModal').modal()

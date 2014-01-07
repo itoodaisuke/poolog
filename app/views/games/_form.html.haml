@@ -7,7 +7,26 @@
       %li= p.input :date, as: :calendar, input_html: {value: Date.today}, label: false, wrapper_html: {class: 'calendar'}
       = p.input :user_id, as: :hidden, input_html: {value: current_user.id}
       = p.simple_fields_for :place do |l|
-        %li= l.input :foursquare_id, collection: @venues.groups[0].items, label: false, wrapper_html: {class: 'place'}
+        -# %li= l.input :foursquare_id, collection: @venues.groups[0].items, label: false, wrapper_html: {class: 'place'}
+        %li= l.input :foursquare_id, as: :url, label: false, wrapper_html: {class: 'place'}
+
+      %div#myModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+        .modal-dialog
+          .modal-content
+            .modal-header
+              %button.close(type='button' data-dismiss='modal' aria-hidden=true) &times;
+              %h4.modal-title Select the Pool Hall
+            .modal-body
+              %ul.nav.nav-tabs
+                %li
+                  %a(href="#place-history" data-toggle="tab") History
+                %li
+                  %a(href="#place-search" data-toggle="tab") Search
+              %div.tab-content
+                %div#place-history.tab-pane.active
+                  %ul.modal-list
+                    - @venues.groups[0].items.each do |venue|
+                      %li= venue.name
 
     -# Open Parameters
     %li= f.input :rule, collection: ['Eight-ball', 'Nine-ball'], label: false, wrapper_html: {class: 'rule'}
