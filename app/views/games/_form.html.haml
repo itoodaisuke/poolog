@@ -23,7 +23,11 @@
                 %li
                   %a(href="#place-search" data-toggle="tab") Search
               %div.tab-content
-                %div#place-history.tab-pane.active
+                %div#place-history.tab-pane
+                  %ul.modal-list
+                    - @place_histories.each do |history|
+                      %li= history.place.name
+                %div#place-search.tab-pane
                   %ul.modal-list
                     - @venues.groups[0].items.each do |venue|
                       %li= venue.name

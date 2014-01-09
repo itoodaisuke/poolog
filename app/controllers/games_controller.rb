@@ -19,6 +19,8 @@ class GamesController < ApplicationController
     @game = Game.new
     @game.game_records.build
     @game.build_party
+
+    @place_histories = Party.select(:id, :foursquare_id).where(user_id: current_user.id).order(created_at: :desc).limit(10).group(:id, :foursquare_id)
   end
 
   # GET /games/1/edit

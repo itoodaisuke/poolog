@@ -19,3 +19,4 @@ jQuery ->
 
   $('.place').click ->
     $('#myModal').modal()
+    $('.nav-tabs li:first-child a').tab('show')
