@@ -17,6 +17,21 @@ jQuery ->
         , 150
   });
 
-  $('.place').click ->
-    $('#myModal').modal()
+  $('.place-form').click ->
+    $('#place-select').modal()
     $('.nav-tabs li:first-child a').tab('show')
+
+  $('.nav-tabs li:last-child a').click ->
+    unless navigator.geolocation then alert "Your browser can not support geolocation."
+    success = (position) ->
+      latitude  = position.coords.latitude
+      longitude = position.coords.longitude
+    error = ->
+      alert "No position available."
+    navigator.geolocation.getCurrentPosition(success, error)
+
+  $('#place-select .modal-list li').click ->
+    $('#game_party_attributes_place_foursquare_id').val($(this).attr('data-foursquare_id'))
+    $('#game_party_attributes_place_name').val($(this).text())
+    $('.place-form .form-group div').text($(this).text())
+    $('#place-select').modal('hide')

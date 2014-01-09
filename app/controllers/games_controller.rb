@@ -2,6 +2,7 @@ class GamesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_game, only: [:show, :edit, :update, :destroy]
   before_action :set_venues, only: [:new, :edit]
+  before_action :set_place_histories, only: [:new, :edit]
 
   # GET /games
   # GET /games.json
@@ -19,8 +20,6 @@ class GamesController < ApplicationController
     @game = Game.new
     @game.game_records.build
     @game.build_party
-
-    @place_histories = Party.select(:id, :foursquare_id).where(user_id: current_user.id).order(created_at: :desc).limit(10).group(:id, :foursquare_id)
   end
 
   # GET /games/1/edit
@@ -93,5 +92,9 @@ class GamesController < ApplicationController
     def set_venues
       place = Place.new
       @venues = place.search_venues
+    end
+
+    def set_place_histories
+      @place_histories = Party.select(:id, :foursquare_id).where(user_id: current_user.id).order(created_at: :desc).limit(10).group(:id, :foursquare_id)
     end
 end
