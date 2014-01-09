@@ -10,9 +10,13 @@
       %li Yours
 
 %section#game-index
-  %h3  Dec 13, 2013
+  - current_date = ''
   %ul.list
     -@games.each do |game|
+      - if game.party.date !=  current_date
+        %li.list-title
+          %h3= game.party.date.strftime("%b %d, %Y")
+          - current_date = game.party.date
       - if game.users.first
         = link_to game_path(game) do
           %li.clearfix
@@ -25,5 +29,5 @@
               %small (15-3)
             %i.icon-facetime-video
             %i.icon-angle-right.icon-2x.arrow-link
-    %div
-      = paginate @games
+  %div
+    = paginate @games

@@ -90,8 +90,8 @@ class GamesController < ApplicationController
     end
 
     def set_venues
-      place = Place.new
-      @venues = place.search_venues
+      @foursquare ||= Foursquare2::Client.new(:client_id => ENV['FOURSQUARE_KEY'], :client_secret => ENV['FOURSQUARE_SECRET'])
+      @venues = @foursquare.search_venues(:categoryId=>ENV['FOURSQUARE_POOLHALL_ID'], :intent=>'browse', :near=>'Tokyo')
     end
 
     def set_place_histories

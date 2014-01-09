@@ -89,7 +89,7 @@ h3 {
     text-decoration: none;
   }
 
-  li {
+  li:not(.list-title) {
     list-style: none;
     border-bottom: 1px solid #efefef;
     position: relative;
