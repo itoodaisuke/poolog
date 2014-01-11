@@ -10,7 +10,7 @@ $screen-xs-max: 480px;
 $screen-sm-min: 481px;
 
 /* Form */
-.place-form,
+.place-form, .member-form,
 select.form-control, select.form-control:focus,
 input[type=date], input[type=date]:focus,
 input.url.form-control, input.url.form-control:focus {
@@ -26,13 +26,10 @@ input.url.form-control, input.url.form-control:focus {
 input.url.form-control, input.url.form-control:focus { cursor: text; }
 input[type="date"].form-control, input[type="date"].form-control:focus { cursor: auto; }
 
-.form-horizontal .form-group {
-  margin: 0;
-}
-.form-actions {
-  margin-top: 20px;
-}
-.select div:after, .place-form div:after {
+.form-horizontal .form-group { margin: 0; }
+.form-actions { margin-top: 20px; }
+
+.select div:after, .place-form div:after, .member-form div:after {
   display: inline-block;
   position: absolute;
   line-height: 45px;
@@ -43,7 +40,7 @@ input[type="date"].form-control, input[type="date"].form-control:focus { cursor:
   font-style: normal;
   font-size: 2em;
 }
-.select div:after {
+.select div:after, .member-form div:after {
   content: "\f107"; //angle-down
   right: 15px;
 }
@@ -51,6 +48,7 @@ input[type="date"].form-control, input[type="date"].form-control:focus { cursor:
   content: "\f105"; //angle-right
   right: 18px;
 }
+.member-form { padding-left: 105px; }
 
 .form-group .form-group div:before {
   display: inline-block;
@@ -65,9 +63,37 @@ input[type="date"].form-control, input[type="date"].form-control:focus { cursor:
 .place .form-group div:before { content: "\f041"; }
 .place-form .form-group div:before { content: "\f041"; }
 .member .form-group div:before { content: "\f007"; }
+.member-form .form-group div:before { content: "\f007"; }
 .rule .form-group div:before { content: "\f02b"; }
 .video .form-group div:before { content: "\f03d"; }
 .calendar .form-group div:before { content: "\f073"; }
+
+.winner-form {
+  position: absolute;
+  width: 50px;
+  height: 45px;
+  top: 0;
+  left: 45px;
+  color: #efefef;
+  cursor: pointer;
+  border-left: 1px solid #efefef;
+  border-right: 1px solid #efefef;
+  &:after {
+    content: "\f091";
+    display: block;
+    position: absolute;
+    line-height: 45px;
+    left: 15px;
+    top: 0;
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+  }
+  &.active, &:hover {
+    background: $TURQUOISE;
+    color: #fff;
+  }
+}
 
 
 h3 {
@@ -83,6 +109,7 @@ h3 {
 .list {
   padding: 0;
   margin: 0;
+  font-size: 16px;
 
   a, a:hover, a:visited {
     color: $WET-ASPHALT;
@@ -104,12 +131,6 @@ h3 {
   p {
     display: inline-block;
     width: 35%;
-  }
-  p:nth-child(3) {
-    width: 20%;
-    strong {
-      color: $ALIZARIN;
-    }
   }
   img {
     width: 75px;
@@ -184,6 +205,14 @@ h3 {
   border: none;
 }
 
+.search-box {
+  height: 45px;
+  padding: 10px 0;
+  input {
+    height: 34px;
+    margin-right: 10px;
+  }
+}
 
 /*****************************************************************
 * Static Pages
@@ -324,33 +353,34 @@ h3 {
 }
 
 #game-show {
-  li {
-    padding: 15px;
-    font-size: 1.2em;
-    i { margin-right: 5px; }
+  li { padding: 15px; }
+  i { margin-right: 5px; }
+}
+
+
+.result {
+  padding: 15px;
+  i { margin-right: 5px; }
+  p {
+    display: block;
+    width: auto;
   }
-  .result {
-    p {
-      display: block;
-      width: auto;
-    }
-    img { width: 50px;
-      height: 50px;
-      border-radius: 50%;
-    }
-    div {
-      width: 50%;
-      float: left;
-      text-align: center;
-      p:last-child {
-        border: 1px solid $TURQUOISE;
-        color: $TURQUOISE;
-        &.win {
-          background: $TURQUOISE;
-          color: white;
-        }
+  img { width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+  div {
+    width: 50%;
+    float: left;
+    text-align: center;
+    p:last-child {
+      border: 1px solid $TURQUOISE;
+      color: $TURQUOISE;
+      &.win {
+        background: $TURQUOISE;
+        color: white;
       }
     }
   }
-
 }
+

@@ -1,48 +1,39 @@
 %ul.list
   = simple_form_for @game, html: {class: 'form-horizontal'} do |f|
-    -# Hidden Parameters
+    -# Member
     = f.simple_fields_for :game_records do |u|
+      %li.members
+        = u.input :winner, as: :hidden, label: false, wrapper_html: {class: 'winner'}
+        %div.winner-form
+        %div.form-group.member-form
+          %div.form-group
+            %div= current_user.name
       = u.association :user, as: :hidden, input_html: { value: current_user.id }, label: false
+    = f.simple_fields_for :game_records do |u|
+      %li.members
+        = u.input :winner, as: :hidden, label: false, wrapper_html: {class: 'winner'}
+        %div.winner-form
+        %div.form-group.member-form
+          %div.form-group
+            %div
+      = u.association :user, as: :hidden, label: false
+    = render 'games/member_select'
+
+    -# Place
     = f.simple_fields_for :party do |p|
       %li= p.input :date, as: :calendar, input_html: {value: Date.today}, label: false, wrapper_html: {class: 'calendar'}
       = p.input :user_id, as: :hidden, input_html: {value: current_user.id}
       = p.simple_fields_for :place do |l|
-        -# %li= l.input :foursquare_id, as: :url, label: false, wrapper_html: {class: 'place'}
         %li
           %div.form-group.place-form
             %div.form-group
               %div
         = l.input :foursquare_id, as: :hidden, input_html: {value: ''}, wrapper_html: {class: 'place'}
         = l.input :name, as: :hidden, input_html: {value: ''}, wrapper_html: {class: 'place'}
+      = render 'games/place_select'
 
-      %div#place-select.modal.fade(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
-        .modal-dialog
-          .modal-content
-            .modal-header
-              %button.close(type='button' data-dismiss='modal' aria-hidden=true) &times;
-              %h4.modal-title Select the Pool Hall
-            .modal-body
-              %ul.nav.nav-tabs
-                %li
-                  %a(href="#place-history" data-toggle="tab") History
-                %li
-                  %a(href="#place-search" data-toggle="tab") Search
-              %div.tab-content
-                %div#place-history.tab-pane
-                  %ul.modal-list
-                    - @place_histories.each do |history|
-                      %li(data-foursquare_id='#{history.place.foursquare_id}')= history.place.name
-                %div#place-search.tab-pane
-                  %ul.modal-list
-                    - @venues.groups[0].items.each do |venue|
-                      %li(data-foursquare_id='#{venue.id}')= venue.name
-
-    -# Open Parameters
     %li= f.input :rule, collection: ['Eight-ball', 'Nine-ball'], label: false, wrapper_html: {class: 'rule'}
     %li= f.input :video_id, as: :url, label: false, wrapper_html: {class: 'video'}, placeholder: 'Youtube Video URL'
-    = f.simple_fields_for :game_records do |u|
-      %li= u.association :user, as: :select, label: false, wrapper_html: {class: 'member'}
-      %li= u.input :winner, label: false, wrapper_html: {class: 'winner'}
     .form-actions
       = f.button :submit, class: 'btn-primary'
       = link_to t('.cancel', default: t("helpers.links.cancel")), games_path, class: 'btn btn-default'

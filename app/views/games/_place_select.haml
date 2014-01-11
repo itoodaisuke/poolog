@@ -1,0 +1,21 @@
+%div#place-select.modal.fade(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close(type='button' data-dismiss='modal' aria-hidden=true) &times;
+        %h4.modal-title Select the Pool Hall
+      .modal-body
+        %ul.nav.nav-tabs
+          %li.list-title
+            %a(href="#place-history" data-toggle="tab") History
+          %li.list-title
+            %a(href="#place-search" data-toggle="tab") Search
+        %div.tab-content
+          %div#place-history.tab-pane
+            %ul.modal-list
+              - @place_histories.each do |history|
+                %li(data-foursquare_id='#{history.place.foursquare_id}')= history.place.name
+          %div#place-search.tab-pane
+            %ul.modal-list
+              - @venues.groups[0].items.each do |venue|
+                %li(data-foursquare_id='#{venue.id}')= venue.name

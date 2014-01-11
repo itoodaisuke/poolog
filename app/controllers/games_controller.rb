@@ -3,6 +3,7 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
   before_action :set_venues, only: [:new, :edit]
   before_action :set_place_histories, only: [:new, :edit]
+  before_action :set_member_histories, only: [:new, :edit]
 
   # GET /games
   # GET /games.json
@@ -96,5 +97,9 @@ class GamesController < ApplicationController
 
     def set_place_histories
       @place_histories = Party.select(:id, :foursquare_id).where(user_id: current_user.id).order(created_at: :desc).limit(10).group(:id, :foursquare_id)
+    end
+
+    def set_member_histories
+      @member_histories = current_user.games.map{|game| game.users.where.not(id: current_user.id)}
     end
 end

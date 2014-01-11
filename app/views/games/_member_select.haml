@@ -1,0 +1,23 @@
+%div#member-select.modal.fade(tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close(type='button' data-dismiss='modal' aria-hidden=true) &times;
+        %h4.modal-title Select the Member
+      .modal-body
+        %ul.nav.nav-tabs
+          %li.list-title
+            %a(href="#member-history" data-toggle="tab") History
+          %li.list-title
+            %a(href="#member-search" data-toggle="tab") Search
+        %div.tab-content
+          %div#member-history.tab-pane
+            %ul.modal-list
+              - @member_histories.each do |history|
+                %li(data-user_id='#{history.first.id}')= history.first.name
+          %div#member-search.tab-pane
+            %div.search-box
+              %input.col-xs-9(placeholder="Enter Facebook user name")
+              %button.btn.btn-primary.col-xs-2
+                %i.icon-search
+            %ul.modal-list
