@@ -63,6 +63,7 @@ jQuery ->
         keyword: keyword
       success: (data) ->
         if data
+          $('#member-search .modal-list').empty()
           for i in data
             $('#member-search .modal-list').append("<li data-user_id="+i['raw_attributes']['id']+">"+i['name']+"</li>")
       error: (data) ->
