@@ -65,7 +65,7 @@ jQuery ->
         if data
           $('#member-search .modal-list').empty()
           for i in data
-            $('#member-search .modal-list').append("<li data-user_id="+i['raw_attributes']['id']+">"+i['name']+"</li>")
+            $('#member-search .modal-list').append("<li data-user_id="+i['raw_attributes']['id']+"><img src='https://graph.facebook.com/"+i['raw_attributes']['id']+"/picture?width=45&height=45'>"+i['name']+"</li>")
       error: (data) ->
         alert("errror")
     e.preventDefault()

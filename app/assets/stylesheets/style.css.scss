@@ -196,9 +196,13 @@ h3 {
 *****************************************************************/
 .modal-list {
   li {
-    padding: 15px 0;
+    line-height: 45px;
     cursor: pointer;
     &:hover { color: $TURQUOISE; }
+    img {
+      height: 45px;
+      width: 45px;
+    }
   }
 }
 .nav-tabs li {
@@ -207,7 +211,7 @@ h3 {
 
 .search-box {
   height: 45px;
-  padding: 10px 0;
+  margin: 15px 0;
   input {
     height: 34px;
     margin-right: 10px;
