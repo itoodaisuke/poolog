@@ -16,6 +16,12 @@
               - @place_histories.each do |history|
                 %li(data-foursquare_id='#{history.place.foursquare_id}')= history.place.name
           %div#place-search.tab-pane
+            %div.location-search
+              %button.btn.btn-block.btn-success
+                %i.icon-compass
+                Search from Current Location
+            %div.search-box
+              %input.col-xs-9(placeholder="Enter the location.")
+              %button.btn.btn-primary.col-xs-2
+                %i.icon-search
             %ul.modal-list
-              - @venues.groups[0].items.each do |venue|
-                %li(data-foursquare_id='#{venue.id}')= venue.name

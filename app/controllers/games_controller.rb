@@ -1,7 +1,6 @@
 class GamesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_game, only: [:show, :edit, :update, :destroy]
-  before_action :set_venues, only: [:new, :edit]
   before_action :set_place_histories, only: [:new, :edit]
   before_action :set_member_histories, only: [:new, :edit]
 
@@ -71,6 +70,17 @@ class GamesController < ApplicationController
     end
   end
 
+  def search_venues
+    foursquare ||= Foursquare2::Client.new(client_id: ENV['FOURSQUARE_KEY'], client_secret: ENV['FOURSQUARE_SECRET'])
+    if params[:keyword]
+      venues = foursquare.search_venues(categoryId: ENV['FOURSQUARE_POOLHALL_ID'], intent: 'browse', near: params[:keyword], radius: 1500)
+    elsif params[:latitude] && params[:longitude]
+      venues = foursquare.search_venues(categoryId: ENV['FOURSQUARE_POOLHALL_ID'], intent: 'browse', ll: "#{params[:latitude]},#{params[:longitude]}", radius: 1500)
+    end
+    render json: venues.to_json || nil
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
@@ -88,11 +98,6 @@ class GamesController < ApplicationController
 
     def place_params
       params.require(:game).require(:party_attributes).require(:place).permit(:foursquare_id, :name)
-    end
-
-    def set_venues
-      @foursquare ||= Foursquare2::Client.new(:client_id => ENV['FOURSQUARE_KEY'], :client_secret => ENV['FOURSQUARE_SECRET'])
-      @venues = @foursquare.search_venues(:categoryId=>ENV['FOURSQUARE_POOLHALL_ID'], :intent=>'browse', :near=>'Tokyo')
     end
 
     def set_place_histories

@@ -22,20 +22,59 @@ jQuery ->
     $('#place-select').modal()
     $('.nav-tabs li:first-child a').tab('show')
 
-  $('.nav-tabs li:last-child a').click ->
-    unless navigator.geolocation then alert "Your browser can not support geolocation."
-    success = (position) ->
-      latitude  = position.coords.latitude
-      longitude = position.coords.longitude
-    error = ->
-      alert "No position available."
-    navigator.geolocation.getCurrentPosition(success, error)
+  $('#place-search .search-box button').click (e) ->
+    keyword = $('#place-search .search-box input').val()
+    param =
+      "keyword" : keyword
+    search_venues(param)
+    e.preventDefault()
 
-  $('#place-select .modal-list li').click ->
-    $('#game_party_attributes_place_foursquare_id').val($(this).attr('data-foursquare_id'))
-    $('#game_party_attributes_place_name').val($(this).text())
-    $('.place-form .form-group div').text($(this).text())
-    $('#place-select').modal('hide')
+  $('#place-search .location-search button').click (e) ->
+    get_location().then(
+      (position) ->
+        param =
+          "latitude"  : position.coords.latitude
+          "longitude" : position.coords.longitude
+        search_venues(param)
+      (error) ->
+        alert("Failed to get the current location.")
+    )
+    e.preventDefault()
+
+  get_location = ->
+    deferred = new jQuery.Deferred()
+    unless navigator.geolocation then alert "Your browser can not support geolocation."
+    navigator.geolocation.getCurrentPosition(
+      (position) ->
+        return deferred.resolve(position)
+      (error) ->
+        return deferred.reject(error)
+    )
+    return deferred.promise()
+
+  search_venues = (param) ->
+    $.ajax
+      url: "/games/search_venues"
+      format: 'json'
+      method: "GET"
+      data:
+        param
+      success: (data) ->
+        if data
+          $('#place-search .modal-list').empty()
+          for i in data["groups"][0]["items"]
+            $('#place-search .modal-list').append("<li data-foursquare_id="+i['id']+">"+i['name']+"</li>")
+      error: (data) ->
+        alert("errror")
+
+
+  jQuery(document).on
+    click: ->
+      $('#game_party_attributes_place_foursquare_id').val($(this).attr('data-foursquare_id'))
+      $('#game_party_attributes_place_name').val($(this).text())
+      $('.place-form .form-group div').text($(this).text())
+      $('#place-select').modal('hide')
+    '#place-select .modal-list li'
 
 
   #Member Select
@@ -53,8 +92,8 @@ jQuery ->
       $('#member-select').modal('hide')
     '#member-select .modal-list li'
 
-  $('.search-box button').click (e) ->
-    keyword = $('.search-box input').val()
+  $('#member-search .search-box button').click (e) ->
+    keyword = $('#member-search .search-box input').val()
     $.ajax
       url: "/users/search_user"
       format: 'json'
