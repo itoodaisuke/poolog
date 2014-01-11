@@ -17,6 +17,7 @@ gem 'quiet_assets'
 gem 'faker'
 gem 'foursquare2'
 gem 'kaminari'
+gem 'fb_graph'
 
 #Bootstrap
 gem 'therubyracer', platforms: :ruby

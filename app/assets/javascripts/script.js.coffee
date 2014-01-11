@@ -45,25 +45,28 @@ jQuery ->
     i = $('.members').index($(this).parent('.members'))
     $('#member-select').attr('data-target-member', i)
 
-  $('#member-select .modal-list li').click ->
-    i = $('#member-select').attr('data-target-member')
-    $('#game_game_records_attributes_'+i+'_user_id').val($(this).attr('data-user_id'))
-    $('.members').eq(i).find('.member-form .form-group div').text($(this).text())
-    $('#member-select').modal('hide')
+  jQuery(document).on
+    click: ->
+      i = $('#member-select').attr('data-target-member')
+      $('#game_game_records_attributes_'+i+'_user_id').val($(this).attr('data-user_id'))
+      $('.members').eq(i).find('.member-form .form-group div').text($(this).text())
+      $('#member-select').modal('hide')
+    '#member-select .modal-list li'
 
   $('.search-box button').click (e) ->
     keyword = $('.search-box input').val()
-#    $.ajax
-#      url: ""
-#      format: 'json'
-#      method: "GET"
-#      data:
-#        keyword: 'hoge'
-#      success: (data) ->
-#        alert("success")
-#        console.log(data)
-#      error: (data) ->
-#        alert("errror")
+    $.ajax
+      url: "/users/search_user"
+      format: 'json'
+      method: "GET"
+      data:
+        keyword: keyword
+      success: (data) ->
+        if data
+          for i in data
+            $('#member-search .modal-list').append("<li data-user_id="+i['raw_attributes']['id']+">"+i['name']+"</li>")
+      error: (data) ->
+        alert("errror")
     e.preventDefault()
 
   $('.winner-form').click ->
