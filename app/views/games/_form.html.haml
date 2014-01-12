@@ -4,14 +4,16 @@
     = f.simple_fields_for :game_records do |u|
       %li.members
         = u.input :winner, as: :hidden, label: false, wrapper_html: {class: 'winner'}
+        = u.input :user_name, as: :hidden, label: false, input_html: {value: current_user.name}
         %div.winner-form
         %div.form-group.member-form
           %div.form-group
             %div= current_user.name
-      = u.association :user, as: :hidden, input_html: { value: current_user.id }, label: false
+      = u.association :user, as: :hidden, input_html: { value: 501633065 }, label: false
     = f.simple_fields_for :game_records do |u|
       %li.members
         = u.input :winner, as: :hidden, label: false, wrapper_html: {class: 'winner'}
+        = u.input :user_name, as: :hidden, label: false, input_html: {value: ""}
         %div.winner-form
         %div.form-group.member-form
           %div.form-group

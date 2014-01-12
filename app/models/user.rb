@@ -28,4 +28,13 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  def self.find_or_create(user_param)
+    User.find_or_create_by(uid: user_param[:user_id]) do |user|
+      user.provider = 'facebook'
+      user.name = user_param[:user_name]
+      user.email = user_param[:email].present? ? user_param[:email] : "#{user_param[:user_id]}_#{Time.now.to_i}@poolog.me"
+      user.password = Devise.friendly_token[0, 20]
+    end
+  end
 end

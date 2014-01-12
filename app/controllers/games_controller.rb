@@ -29,6 +29,11 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
+    for i in 0..1 do
+      user_data = user_params[:game_records_attributes]["#{i}"]
+      User.find_or_create(user_data)
+    end
+
     @game = Game.new(game_params)
     @game.party = Party.where(user_id: current_user.id).where(date: party_params[:date]).first || @game.build_party(party_params)
     @game.party.place = Place.where(foursquare_id: place_params[:foursquare_id]).first || @game.party.build_place(place_params)
@@ -89,7 +94,7 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:rule, :video_id, game_records_attributes: [:user_id, :winner, :score])
+      params.require(:game).permit(:rule, :video_id, game_records_attributes: [:user_id, :winner])
     end
 
     def party_params
@@ -98,6 +103,10 @@ class GamesController < ApplicationController
 
     def place_params
       params.require(:game).require(:party_attributes).require(:place).permit(:foursquare_id, :name)
+    end
+
+    def user_params
+      params.require(:game).permit(game_records_attributes: [:user_id, :user_name, :winner])
     end
 
     def set_place_histories

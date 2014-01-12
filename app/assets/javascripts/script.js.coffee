@@ -88,6 +88,7 @@ jQuery ->
     click: ->
       i = $('#member-select').attr('data-target-member')
       $('#game_game_records_attributes_'+i+'_user_id').val($(this).attr('data-user_id'))
+      $('#game_game_records_attributes_'+i+'_user_name').val($(this).text())
       $('.members').eq(i).find('.member-form .form-group div').text($(this).text())
       $('#member-select').modal('hide')
     '#member-select .modal-list li'
