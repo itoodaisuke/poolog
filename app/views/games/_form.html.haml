@@ -37,5 +37,5 @@
     %li= f.input :rule, collection: ['Eight-ball', 'Nine-ball'], label: false, wrapper_html: {class: 'rule'}
     %li= f.input :video_id, as: :url, label: false, wrapper_html: {class: 'video'}, placeholder: 'Youtube Video URL'
     .form-actions
-      = f.button :submit, class: 'btn-primary'
-      = link_to t('.cancel', default: t("helpers.links.cancel")), games_path, class: 'btn btn-default'
+      = f.button :submit, class: 'btn-primary btn-block btn-lg'
+      = link_to t('.cancel', default: t("helpers.links.cancel")), games_path, class: 'btn btn-block btn-default'
