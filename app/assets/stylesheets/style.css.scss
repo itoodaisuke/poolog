@@ -128,6 +128,23 @@ h3 {
     }
   }
 
+  a .list-title {
+    position: relative;
+    &:after {
+      content: "\f105"; //angle-right
+      display: inline-block;
+      position: absolute;
+      line-height: 39px;
+      top: 0;
+      right: 15px;
+      color: #efefef;
+      font-family: FontAwesome;
+      font-weight: light;
+      font-style: normal;
+      font-size: 1.5em;
+    }
+  }
+
   p {
     display: inline-block;
     width: 35%;
@@ -338,6 +355,22 @@ h3 {
 /*****************************************************************
 * Game Index
 *****************************************************************/
+.list-result {
+  float: left;
+  width: 28px;
+  text-align: center;
+  line-height: 75px;
+  padding: 0;
+  color: #efefef;
+  text-align: center;
+  &.win {
+    color: #fff;
+    background: $TURQUOISE;
+  }
+  &.lose {
+    color: $TURQUOISE;
+  }
+}
 
 
 /*****************************************************************

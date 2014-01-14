@@ -13,4 +13,17 @@ class Game < ActiveRecord::Base
       self.video_id = id ? id[1] : nil
     end
   end
+
+  def joined_by?(user)
+    return self.users.include?(user)
+  end
+
+  def winner
+    return self.game_records.find_by(winner: true).try(:user)
+  end
+
+  def opponent(current_user)
+    return nil unless self.joined_by?(current_user)
+    return self.game_records.where.not(user_id: current_user.id).first.try(:user)
+  end
 end

@@ -14,20 +14,29 @@
   %ul.list
     -@games.each do |game|
       - if game.party.date !=  current_date
-        %li.list-title
-          %h3= game.party.date.strftime("%b %d, %Y")
-          - current_date = game.party.date
-      - if game.users.first
         = link_to game_path(game) do
+          %li.list-title
+            %h3= game.party.date.strftime("%b %d, %Y")
+            - current_date = game.party.date
+      = link_to game_path(game) do
+        - if game.joined_by?(current_user)
           %li.clearfix
-            = profile_img(game.users.first)
+            - if game.winner == current_user
+              %div.list-result.win
+                %i.icon-trophy
+            - elsif game.winner == game.opponent(current_user)
+              %div.list-result.lose
+                %i.icon-remove
+            - else
+              %div.list-result
+                %i.icon-minus
+            = profile_img(game.opponent(current_user)) if game.opponent(current_user)
             %p
-              = game.users.first.name
-            %p
-              %strong WIN
-              %br
-              %small (15-3)
-            %i.icon-facetime-video
+              = game.opponent(current_user).try(:name) || '(No Name)'
+            %span.label.label-primary= game.rule if game.rule.present?
             %i.icon-angle-right.icon-2x.arrow-link
+        - else
+          -# %li.clearfix
+          -#   = profile_img(current_user)
   %div
     = paginate @games
