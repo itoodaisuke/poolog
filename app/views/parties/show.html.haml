@@ -1,0 +1,17 @@
+- model_class = Party
+- title = model_class.model_name.human.pluralize.titleize
+- provide(:title, title)
+
+%h3 #{@party.date.strftime("%b %d, %Y")} @#{@party.place.name || '-'}
+
+%section#switch-nav.clearfix
+  %ul
+    = link_to "#" do
+      %li.active Ranking
+    = link_to "#" do
+      %li Games
+
+%section
+  %ul.list
+    %li
+

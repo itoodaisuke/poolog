@@ -14,7 +14,7 @@
   %ul.list
     -@games.each do |game|
       - if game.party.date !=  current_date
-        = link_to game_path(game) do
+        = link_to party_path(game.party) do
           %li.list-title
             %h3= game.party.date.strftime("%b %d, %Y")
             - current_date = game.party.date
