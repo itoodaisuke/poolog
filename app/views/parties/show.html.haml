@@ -13,5 +13,8 @@
 
 %section
   %ul.list
-    %li
+    - @rankings.each_with_index do |ranking, i|
+      %li
+        %div.= i+1
+        %p= ranking[:user].name
 

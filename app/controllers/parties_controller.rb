@@ -3,6 +3,7 @@ class PartiesController < ApplicationController
   before_action :set_party, only: [:show]
 
   def show
+    @rankings = @party.rankings
   end
 
   private

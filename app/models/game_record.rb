@@ -7,4 +7,6 @@ class GameRecord < ActiveRecord::Base
     user = User.find_by(uid: self.user_id)
     self.user_id = user.id
   end
+
+  scope :win, -> { where(winner: true) }
 end
