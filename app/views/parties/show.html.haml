@@ -29,7 +29,9 @@
 
           = profile_img(ranking[:user])
           %p= ranking[:user].name
-          %p
+          %p.score
             %span= ranking[:wins]
             Wins
 
+%div.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), games_path, :class => 'btn btn-default btn-block btn-lg'

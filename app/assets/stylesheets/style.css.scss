@@ -121,6 +121,10 @@ h3 {
     border-bottom: 1px solid #efefef;
     position: relative;
   }
+  &.index-list li:not(.list-title) {
+    height: 75px;
+    overflow: hidden;
+  }
   a li {
     &:hover {
       background: rgba(26,188,156,0.1);
@@ -148,10 +152,14 @@ h3 {
   p {
     display: inline-block;
     width: 35%;
+    &.score {
+      width: 20%;
+    }
   }
   img {
     width: 75px;
     height: 75px;
+    vertical-align: top;
   }
   .arrow-link {
     color: #efefef;
@@ -410,6 +418,10 @@ h3 {
   p {
     display: block;
     width: auto;
+    &.name {
+      height: 22px;
+      overflow: hidden;
+    }
   }
   img { width: 50px;
     height: 50px;
@@ -419,14 +431,18 @@ h3 {
     width: 50%;
     float: left;
     text-align: center;
-    p:last-child {
+    p.win, p.lose {
       border: 1px solid $TURQUOISE;
       color: $TURQUOISE;
-      &.win {
-        background: $TURQUOISE;
-        color: white;
-      }
+    }
+    p.win {
+      background: $TURQUOISE;
+      color: white;
     }
   }
 }
 
+.list-name {
+  max-height: 44px;
+  overflow: hidden;
+}

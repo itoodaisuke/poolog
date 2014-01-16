@@ -5,13 +5,13 @@
 %section#switch-nav.clearfix
   %ul
     = link_to "#" do
-      %li.active All
+      %li.active Yours
     = link_to "#" do
-      %li Yours
+      %li All
 
 %section#game-index
   - current_date = ''
-  %ul.list
+  %ul.list.index-list
     -@games.each do |game|
       - if game.party.date !=  current_date
         = link_to party_path(game.party) do
@@ -31,12 +31,20 @@
               %div.list-result
                 %i.icon-minus
             = profile_img(game.opponent(current_user)) if game.opponent(current_user)
-            %p
+            %p.list-name
               = game.opponent(current_user).try(:name) || '(No Name)'
             %span.label.label-primary= game.rule if game.rule.present?
             %i.icon-angle-right.icon-2x.arrow-link
         - else
-          -# %li.clearfix
-          -#   = profile_img(current_user)
+          %li.clearfix
+            %div.list-result
+              %i.icon-minus
+            - game.users.each do |user|
+              = profile_img(user)
+            %p.list-name
+              #{game.users.first.name}
+              %br
+              #{game.users.second.name}
+            %i.icon-angle-right.icon-2x.arrow-link
   %div
     = paginate @games

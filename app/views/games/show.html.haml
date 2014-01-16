@@ -4,33 +4,34 @@
   %h3= @game.party.date.strftime("%b %d, %Y")
   %ul.list
     %li.result.clearfix
-      %div
-        = profile_img(@game.users.first)
-        %p= @game.users.first.name
-        %p.win
-          %i.icon-trophy
-          WIN
-      %div
-        = profile_img(@game.users.second)
-        %p= @game.users.second.name
-        %p.lose
-          %i.icon-remove
-          LOSE
+      - @game.users.each do |user|
+        %div
+          = profile_img(user)
+          %p.name= user.name
+          - if @game.winner
+            - if user == @game.winner
+              %p.win
+                %i.icon-trophy
+                WIN
+            - else
+              %p.lose
+                %i.icon-remove
+                LOSE
     %li
       %i.icon-calendar
-      %span= @game.party.date
+      %span= @game.party.date.strftime("%b %d, %Y")
     %li
       %i.icon-tag
       %span= @game.rule
     %li
       %i.icon-map-marker
-      %span= @game.party.foursquare_id
+      %span= @game.party.place.name
 
   - if @game.video_id.present?
     %div.youtube-wrapper
       %iframe(src="//www.youtube-nocookie.com/embed/#{@game.video_id}?rel=0" allowfullscreen)
 
-  %div
-    = link_to t('.back', :default => t("helpers.links.back")), games_path, :class => 'btn btn-default'
-    = link_to t('.edit', :default => t("helpers.links.edit")), edit_game_path(@game), :class => 'btn btn-default'
-    = link_to t('.destroy', :default => t("helpers.links.destroy")), game_path(@game), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+  %div.form-actions
+    = link_to t('.back', :default => t("helpers.links.back")), games_path, :class => 'btn btn-default btn-block btn-lg'
+    = link_to t('.edit', :default => t("helpers.links.edit")), edit_game_path(@game), :class => 'btn btn-primary btn-block'
+    = link_to t('.destroy', :default => t("helpers.links.destroy")), game_path(@game), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-block'
