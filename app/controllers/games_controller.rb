@@ -53,7 +53,14 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
   def update
+    for i in 0..1 do
+      user_data = user_params[:game_records_attributes]["#{i}"]
+      User.find_or_create(user_data)
+    end
+
     @game.party = Party.where(user_id: current_user.id).where(date: party_params[:date]).first || @game.build_party(party_params)
+    @game.party.place = Place.where(foursquare_id: place_params[:foursquare_id]).first || @game.party.build_place(place_params)
+
     respond_to do |format|
       if @game.update(game_params)
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }
@@ -94,7 +101,7 @@ class GamesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def game_params
-      params.require(:game).permit(:rule, :video_id, game_records_attributes: [:user_id, :winner])
+      params.require(:game).permit(:rule, :video_id, game_records_attributes: [:id, :user_id, :winner])
     end
 
     def party_params
