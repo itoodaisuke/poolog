@@ -6,9 +6,9 @@ class Party < ActiveRecord::Base
   def rankings
     rankings = []
     win_records = self.games.map{|g| g.winner}
-    win_records.compact.each do |w|
+    self.games.map{|g| g.users}.flatten.uniq.each do |w|
       rankings << { user: w, wins: win_records.count(w) }
     end
-    rankings.sort! {|a,b| a.wins <=> b.wins }
+    rankings.sort_by{|e| -e[:wins]}
   end
 end

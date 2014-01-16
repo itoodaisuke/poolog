@@ -13,8 +13,23 @@
 
 %section
   %ul.list
+    - current_rank  = 1
+    - current_score = 0
     - @rankings.each_with_index do |ranking, i|
+      - current_rank = i+1 unless ranking[:wins] == current_score
+      - current_score = ranking[:wins]
       %li
-        %div.= i+1
-        %p= ranking[:user].name
+        %div
+          - if current_rank == 1
+            %div.list-result.win
+              = current_rank
+          - else
+            %div.list-result.lose
+              = current_rank
+
+          = profile_img(ranking[:user])
+          %p= ranking[:user].name
+          %p
+            %span= ranking[:wins]
+            Wins
 
