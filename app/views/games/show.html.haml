@@ -1,4 +1,6 @@
 - model_class = Game
+- title = model_class.model_name.human.titleize
+- provide(:title, title)
 
 %section#game-show
   %h3= @game.party.date.strftime("%b %d, %Y")

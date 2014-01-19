@@ -10,41 +10,44 @@
       %li All
 
 %section#game-index
-  - current_date = ''
-  %ul.list.index-list
-    -@games.each do |game|
-      - if game.party.date !=  current_date
-        = link_to party_path(game.party) do
-          %li.list-title
-            %h3= game.party.date.strftime("%b %d, %Y")
-            - current_date = game.party.date
-      = link_to game_path(game) do
-        - if game.joined_by?(current_user)
-          %li.clearfix
-            - if game.winner == current_user
-              %div.list-result.win
-                %i.icon-trophy
-            - elsif game.winner == game.opponent(current_user)
-              %div.list-result.lose
-                %i.icon-remove
-            - else
+  - if current_user.present?
+    - current_date = ''
+    %ul.list.index-list
+      -@games.each do |game|
+        - if game.party.date !=  current_date
+          = link_to party_path(game.party) do
+            %li.list-title
+              %h3= game.party.date.strftime("%b %d, %Y")
+              - current_date = game.party.date
+        = link_to game_path(game) do
+          - if game.joined_by?(current_user)
+            %li.clearfix
+              - if game.winner == current_user
+                %div.list-result.win
+                  %i.icon-trophy
+              - elsif game.winner == game.opponent(current_user)
+                %div.list-result.lose
+                  %i.icon-remove
+              - else
+                %div.list-result
+                  %i.icon-minus
+              = profile_img(game.opponent(current_user)) if game.opponent(current_user)
+              %p.list-name
+                = game.opponent(current_user).try(:name) || '(No Name)'
+              %span.label.label-primary= game.rule if game.rule.present?
+              %i.icon-angle-right.icon-2x.arrow-link
+          - else
+            %li.clearfix
               %div.list-result
                 %i.icon-minus
-            = profile_img(game.opponent(current_user)) if game.opponent(current_user)
-            %p.list-name
-              = game.opponent(current_user).try(:name) || '(No Name)'
-            %span.label.label-primary= game.rule if game.rule.present?
-            %i.icon-angle-right.icon-2x.arrow-link
-        - else
-          %li.clearfix
-            %div.list-result
-              %i.icon-minus
-            - game.users.each do |user|
-              = profile_img(user)
-            %p.list-name
-              #{game.users.first.name}
-              %br
-              #{game.users.second.name}
-            %i.icon-angle-right.icon-2x.arrow-link
-  %div
-    = paginate @games
+              - game.users.each do |user|
+                = profile_img(user)
+              %p.list-name
+                #{game.users.first.name}
+                %br
+                #{game.users.second.name}
+              %i.icon-angle-right.icon-2x.arrow-link
+    %div
+      = paginate @games
+  - else
+    %p.text-center Log in first to see your game records.
