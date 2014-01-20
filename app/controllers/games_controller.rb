@@ -59,6 +59,7 @@ class GamesController < ApplicationController
     end
 
     @game.party = Party.where(user_id: current_user.id).where(date: party_params[:date]).first || @game.build_party(party_params)
+    @game.party.id = nil if @game.party.new_record?
     @game.party.place = Place.where(foursquare_id: place_params[:foursquare_id]).first || @game.party.build_place(place_params)
 
     respond_to do |format|
