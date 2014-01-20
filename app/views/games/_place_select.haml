@@ -14,7 +14,7 @@
           %div#place-history.tab-pane
             %ul.modal-list
               - @place_histories.each do |history|
-                %li(data-foursquare_id='#{history.place.foursquare_id}')= history.place.name
+                %li(data-foursquare_id='#{history.foursquare_id}')= history.name
           %div#place-search.tab-pane
             %div.location-search
               %button.btn.btn-block.btn-success

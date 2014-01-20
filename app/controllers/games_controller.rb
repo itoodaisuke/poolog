@@ -20,6 +20,8 @@ class GamesController < ApplicationController
     @game = Game.new
     @game.game_records.build
     @game.build_party
+
+    p @place_histories
   end
 
   # GET /games/1/edit
@@ -118,10 +120,10 @@ class GamesController < ApplicationController
     end
 
     def set_place_histories
-      @place_histories = Party.select(:id, :foursquare_id).where(user_id: current_user.id).order(created_at: :desc).limit(10).group(:id, :foursquare_id)
+      @place_histories = current_user.parties.map{|party| party.place}.uniq[0..9]
     end
 
     def set_member_histories
-      @member_histories = current_user.games.map{|game| game.users.where.not(id: current_user.id)}
+      @member_histories = current_user.games.map{|game| game.opponent(current_user)}.uniq[0..9]
     end
 end

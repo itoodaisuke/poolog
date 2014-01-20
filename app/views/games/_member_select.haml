@@ -14,7 +14,7 @@
           %div#member-history.tab-pane
             %ul.modal-list
               - @member_histories.each do |history|
-                %li(data-user_id='#{history.first.id}')= history.first.name
+                %li(data-user_id='#{history.uid}')= history.name
           %div#member-search.tab-pane
             %div.search-box
               %input.col-xs-9(placeholder="Enter Facebook user name")
