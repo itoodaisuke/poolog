@@ -36,7 +36,7 @@ describe "Games" do
       let(:page_title) { 'Games' }
 
       it "should have party show path" do
-        expect(page).to have_content("Jan")
+        expect(page).to have_selector(:css, "ul.list.index-list")
       end
 
       it "should have game show path" do
