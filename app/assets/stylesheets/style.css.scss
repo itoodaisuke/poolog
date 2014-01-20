@@ -5,6 +5,7 @@ $WET-ASPHALT: #34495E;
 $ALIZARIN: #E74C3C;
 $POMEGRANATE: #C0392B;
 $TURQUOISE: #1ABC9C;
+$BILLIARD-GREEN: #12945E;
 
 $screen-xs-max: 480px;
 $screen-sm-min: 481px;
@@ -256,54 +257,35 @@ h3 {
 * Static Pages
 *****************************************************************/
 #home-body {
-  padding-top: 0;
+  padding-top: 80px;
+  background: $BILLIARD-GREEN;
 }
 #home {
   .home-box {
-    text-align :center;
-    width: 90%;
-    margin: 70px auto;
-    padding: 80px 30px;
-    border-radius: 7px;
-    background: rgba(255,255,255,0.8);
-
     div {
-      margin-bottom: 50px;
+      text-align: center;
       img {
-        width: 100%;
+        width: 50%;
         margin-bottom: 20px;
-      }
-      p {
-        font-size: large;
-        color: #555;
       }
     }
   }
 
   a:hover { text-decoration: none; }
   li {
+    display: inline-block;
     margin: 20px auto 0;
-    padding: 15px;
+    padding: 15px 50px;
     line-height: 1.5em;
     font-size: 1.5em;
-    color: #fff;
+    color: $BILLIARD-GREEN;
     border-radius: 5px;
     &:hover { opacity: 0.9; }
   }
 
-  i {
-     border-right: 1px solid #efefef;
-     margin-left: 10px;
-  }
-  span { margin-left: 10px; }
-
   .facebook {
-    background: #3b5998;
-    i { padding: 0 15px 0 5px; }
-  }
-  .twitter {
-    background: #00acee;
-    i { padding: 0 10px 0 0; }
+    background: #fff;
+    i { padding-right: 5px; }
   }
 }
 

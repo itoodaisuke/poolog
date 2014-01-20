@@ -1,14 +1,9 @@
 %section#home
   %div.home-box
-    %div
+    %div.col-md-6.col-md-offset-3
       =image_tag("logo.png")
-      %p For All Who Love Billiards.
-    %ul
-      = link_to omniauth_authorize_path('user', 'facebook') do
-        %li.facebook
-          %i.icon-facebook
-          %span Login with Facebook
-      %a(href="#")
-        %li.twitter
-          %i.icon-twitter
-          %span Login with Twitter
+      %ul
+        = link_to omniauth_authorize_path('user', 'facebook') do
+          %li.facebook
+            %i.icon-facebook-sign
+            %span Login with Facebook
