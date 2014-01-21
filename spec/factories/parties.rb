@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :party do
+    association :user
     date Date.today
   end
 end

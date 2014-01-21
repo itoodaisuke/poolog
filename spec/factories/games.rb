@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :game do
+    association :party
     rule "Eight-ball"
   end
 end

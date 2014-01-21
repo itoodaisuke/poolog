@@ -3,6 +3,9 @@ class Party < ActiveRecord::Base
   belongs_to :user
   belongs_to :place, foreign_key: :foursquare_id
 
+  validates :user_id, presence: true
+  validates :date, presence: true
+
   def rankings
     rankings = []
     win_records = self.games.map{|g| g.winner}

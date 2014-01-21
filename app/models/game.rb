@@ -6,8 +6,12 @@ class Game < ActiveRecord::Base
   accepts_nested_attributes_for :game_records
   accepts_nested_attributes_for :party
 
+  validates :party_id, presence: true
+  validates :party, associated: true
+  validates :video_id, length: {is: 11}, if: "video_id.present?"
+
   # YoutubeのURLからVideoIDだけ抜き出して保存
-  before_save do
+  before_validation do
     if self.video_id.present?
       id = self.video_id.match(%r{http://www.youtube.com/.*[\?|&]v=([a-zA-Z0-9_-]{11})&*})
       self.video_id = id ? id[1] : nil
