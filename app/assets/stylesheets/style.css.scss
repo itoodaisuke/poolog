@@ -270,19 +270,26 @@ h3 {
       }
     }
   }
+}
 
+
+.login {
   a:hover { text-decoration: none; }
   li {
-    display: inline-block;
     margin: 20px auto 0;
-    padding: 15px 50px;
+    padding: 15px;
+    color: $BILLIARD-GREEN;
     line-height: 1.5em;
     font-size: 1.5em;
-    color: $BILLIARD-GREEN;
-    border-radius: 5px;
+    border: 3px solid $BILLIARD-GREEN;
+    border-radius: 10px;
     &:hover { opacity: 0.9; }
+    @media (min-width: $screen-sm-min) {
+      padding: 15px 50px;
+      display: inline-block;
+    }
+    border: 3px solid $BILLIARD-GREEN;
   }
-
   .facebook {
     background: #fff;
     i { padding-right: 5px; }

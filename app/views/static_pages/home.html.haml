@@ -2,7 +2,7 @@
   %div.home-box
     %div.col-md-6.col-md-offset-3
       =image_tag("logo.png")
-      %ul
+      %ul.login
         = link_to omniauth_authorize_path('user', 'facebook') do
           %li.facebook
             %i.icon-facebook-sign

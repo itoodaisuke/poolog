@@ -8,8 +8,7 @@
         %i.icon-signout
         = link_to "Logout".html_safe, destroy_user_session_path, method: :delete
     - else
-      = menu_item "Sign up", new_user_registration_path
-      = menu_item "Login", new_user_session_path
+      = menu_item "Login with Facebook", omniauth_authorize_path('user', 'facebook')
   = menu_group pull: :left do
     %li
       %i.icon-bar-chart
