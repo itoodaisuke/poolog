@@ -14,7 +14,6 @@ gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'quiet_assets'
-gem 'faker'
 gem 'foursquare2'
 gem 'kaminari'
 gem 'fb_graph'
@@ -43,8 +42,13 @@ group :development do
 end
 
 group :test do
-  gem 'selenium-webdriver'
+  gem 'faker'
   gem 'capybara'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'selenium-webdriver'
+  gem 'simplecov', :require=>false
+  gem 'fuubar'
 end
 
 group :development, :test do
@@ -53,10 +57,7 @@ group :development, :test do
   gem 'guard-bundler'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'simplecov', :require=>false
   gem 'pry-rails'
   gem 'pry-debugger'
-  gem 'fuubar'
   gem "factory_girl_rails"
-  gem 'database_cleaner'
 end
