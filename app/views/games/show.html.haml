@@ -27,7 +27,7 @@
       %span= @game.rule
     %li
       %i.icon-map-marker
-      %span= @game.party.place.name
+      %span= @game.party.place.try(:name)
 
   - if @game.video_id.present?
     %div.youtube-wrapper

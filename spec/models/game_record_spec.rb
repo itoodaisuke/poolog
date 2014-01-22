@@ -10,9 +10,4 @@ describe GameRecord do
     game_record = build(:game_record, user_id: nil)
     expect(game_record).to have(1).errors_on(:user_id)
   end
-
-  it "is invalid without a game_id" do
-    game_record = build(:game_record, game_id: nil)
-    expect(game_record).to have(1).errors_on(:game_id)
-  end
 end

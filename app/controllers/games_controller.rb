@@ -20,8 +20,6 @@ class GamesController < ApplicationController
     @game = Game.new
     @game.game_records.build
     @game.build_party
-
-    p @place_histories
   end
 
   # GET /games/1/edit
@@ -46,6 +44,8 @@ class GamesController < ApplicationController
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render action: 'show', status: :created, location: @game }
       else
+        set_member_histories
+        set_place_histories
         format.html { render action: 'new' }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end

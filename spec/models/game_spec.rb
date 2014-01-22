@@ -10,13 +10,4 @@ describe Game do
     game = build(:game, party_id: nil)
     expect(game).to have(1).errors_on(:party_id)
   end
-
-  it "has two game_records" do
-    game = build(:game)
-    2.times do
-      game.game_records << build(:game_record)
-    end
-    game.save
-    expect(game.game_records.count).to eq 2
-  end
 end
