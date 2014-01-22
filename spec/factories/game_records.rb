@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :game_record do
-    association :user
     association :game
+    association :user
 
     factory :win_record do
       winner true

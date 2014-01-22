@@ -29,10 +29,7 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    for i in 0..1 do
-      user_data = user_params[:game_records_attributes]["#{i}"]
-      User.find_or_create(user_data)
-    end
+    set_user_data
 
     @game = Game.new(game_params)
     @game.party = Party.where(user_id: current_user.id).where(date: party_params[:date]).first || @game.build_party(party_params)
@@ -55,10 +52,7 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
   def update
-    for i in 0..1 do
-      user_data = user_params[:game_records_attributes]["#{i}"]
-      User.find_or_create(user_data)
-    end
+    set_user_data
 
     @game.party = Party.where(user_id: current_user.id).where(date: party_params[:date]).first || @game.build_party(party_params)
     @game.party.id = nil if @game.party.new_record?
@@ -117,6 +111,16 @@ class GamesController < ApplicationController
 
     def user_params
       params.require(:game).permit(game_records_attributes: [:user_id, :user_name, :winner])
+    end
+
+
+    # GameRecordの2レコードに対してuser_idを正しい値に変更。userが存在しなければ新規作成しておく。
+    def set_user_data
+      for i in 0..1 do
+        user_data = user_params[:game_records_attributes]["#{i}"]
+        user = User.find_or_create(user_data)
+        params[:game][:game_records_attributes]["#{i}"][:user_id] = user.id #user_idにuidが入ってるのでほんとのuser_idに置き換え
+      end
     end
 
     def set_place_histories
