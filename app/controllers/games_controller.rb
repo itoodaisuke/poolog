@@ -1,8 +1,8 @@
 class GamesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  # skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_game, only: [:show, :edit, :update, :destroy]
-  before_action :set_place_histories, only: [:new, :edit]
-  before_action :set_member_histories, only: [:new, :edit]
+  # before_action :set_place_histories, only: [:new, :edit]
+  # before_action :set_member_histories, only: [:new, :edit]
 
   # GET /games
   # GET /games.json

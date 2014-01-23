@@ -2,9 +2,17 @@ require 'spec_helper'
 
 describe GamesController do
   describe 'GET #index' do
-    it 'populates an array of games joined by the user'
-    it 'groups the games by its party date'
-    it 'renders the :index template'
+    it 'populates an array of games joined by the user' do
+      game1 = create(:game)
+      game2 = create(:game)
+      get :index
+      expect(assigns(:games)).to match_array([game1, game2])
+    end
+
+    it 'renders the :index template' do
+      get :index
+      expect(response).to render_template :index
+    end
   end
 
   describe 'GET #show' do
@@ -22,7 +30,11 @@ describe GamesController do
   end
 
   describe 'GET #new' do
-    it 'assigns a new game to @game'
+    it 'assigns a new game to @game' do
+      get :new
+      expect(assigns(:game)).to be_a_new(Game)
+    end
+
     it 'renders the :new template'
   end
 
