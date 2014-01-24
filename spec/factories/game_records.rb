@@ -8,5 +8,12 @@ FactoryGirl.define do
     factory :win_record do
       winner true
     end
+
+    factory :game_record_for_controller do
+      user_name 'hoge'
+      factory :win_record_for_controller do
+        winner true
+      end
+    end
   end
 end

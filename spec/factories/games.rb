@@ -10,9 +10,5 @@ FactoryGirl.define do
         create(:game_record, game: game, user: create(:user))
       end
     end
-
-    factory :invalid_game do
-      party_id nil
-    end
   end
 end

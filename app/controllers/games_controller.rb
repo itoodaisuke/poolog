@@ -1,8 +1,8 @@
 class GamesController < ApplicationController
-  # skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show]
   before_action :set_game, only: [:show, :edit, :update, :destroy]
-  # before_action :set_place_histories, only: [:new, :edit]
-  # before_action :set_member_histories, only: [:new, :edit]
+  before_action :set_place_histories, only: [:new, :edit]
+  before_action :set_member_histories, only: [:new, :edit]
 
   # GET /games
   # GET /games.json
@@ -35,7 +35,6 @@ class GamesController < ApplicationController
     @game.party = Party.where(user_id: current_user.id).where(date: party_params[:date]).first || @game.build_party(party_params)
     @game.party.place = Place.where(foursquare_id: place_params[:foursquare_id]).first || @game.party.build_place(place_params)
 
-    # redirect_to new_game_path
     respond_to do |format|
       if @game.save
         format.html { redirect_to @game, notice: 'Game was successfully created.' }

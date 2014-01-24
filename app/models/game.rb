@@ -6,7 +6,6 @@ class Game < ActiveRecord::Base
   accepts_nested_attributes_for :game_records
   accepts_nested_attributes_for :party
 
-  validates :party_id, presence: true
   validates :party, associated: true
   validates :video_id, length: {is: 11}, if: "video_id.present?"
 

@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :party do
+    date Date.today.strftime("%Y-%m-%d")
     association :user
-    date Date.today
   end
 end
