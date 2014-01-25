@@ -6,9 +6,8 @@ FactoryGirl.define do
     rule "Eight-ball"
 
     after(:create) do |game|
-      2.times do
-        create(:game_record, game: game, user: create(:user))
-      end
+      create(:win_record, game: game, user: create(:user))
+      create(:game_record, game: game, user: create(:user))
     end
   end
 end

@@ -2,9 +2,7 @@ require 'spec_helper'
 
 describe Place do
   it "is valid with name" do
-    place = Place.new(
-      name: 'hoge'
-    )
+    place = Place.new(name: 'hoge')
     expect(place).to be_valid
   end
 
