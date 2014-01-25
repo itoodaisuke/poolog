@@ -48,6 +48,7 @@ RSpec.configure do |config|
     FactoryGirl.reload
   end
   config.include FactoryGirl::Syntax::Methods
+  config.include GameAttributesMacros
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction

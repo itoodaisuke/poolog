@@ -63,14 +63,7 @@ describe GamesController do
     describe 'POST #create' do
       before :each do
         opponent = create(:user)
-
-        @place = attributes_for(:place)
-        @party = attributes_for(:party, user_id: @user.id, place: @place)
-        @invalid_party = attributes_for(:party, user_id: nil, place: @place)
-        @game_records =  {
-          "0" => attributes_for(:game_record_for_controller, user_id: @user.id),
-          "1" => attributes_for(:game_record_for_controller, user_id: opponent.id)
-        }
+        set_game_attributes(@user, opponent)
       end
 
       context 'with valid attributes' do
@@ -102,16 +95,9 @@ describe GamesController do
 
     describe 'PATCH #update' do
       before :each do
-        opponent = create(:user)
-
-        @place = attributes_for(:place)
-        @party = attributes_for(:party, user_id: @user.id, place: @place)
-        @invalid_party = attributes_for(:party, user_id: nil, place: @place)
-        @game_records =  {
-          "0" => attributes_for(:win_record_for_controller, user_id: @user.id),
-          "1" => attributes_for(:game_record_for_controller, user_id: opponent.id)
-        }
         @game = create(:game)
+        opponent = create(:user)
+        set_game_attributes(@user, opponent)
       end
 
       context 'with valid attributes' do
@@ -169,7 +155,7 @@ describe GamesController do
     describe 'GET #new' do
       it 'renders the :new template' do
         get :new
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to require_login
       end
     end
 
@@ -180,14 +166,14 @@ describe GamesController do
 
       it 'renders the :new template' do
         get :edit, id: @game
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to require_login
       end
     end
 
     describe 'POST #create' do
       it 'renders the :new template' do
         post :create
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to require_login
       end
     end
 
@@ -198,7 +184,7 @@ describe GamesController do
 
       it 'renders the :new template' do
         patch :update, id: @game
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to require_login
       end
     end
 
@@ -209,7 +195,7 @@ describe GamesController do
 
       it 'renders the :new template' do
         delete :destroy, id: @game
-        expect(response).to redirect_to new_user_session_path
+        expect(response).to require_login
       end
     end
   end
