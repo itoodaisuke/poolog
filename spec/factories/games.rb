@@ -10,4 +10,14 @@ FactoryGirl.define do
       create(:game_record, game: game, user: create(:user))
     end
   end
+
+  factory :game_with_no_winner, class: Game do
+    association :party
+    rule "Eight-ball"
+
+    after(:create) do |game|
+      create(:game_record, game: game, user: create(:user))
+      create(:game_record, game: game, user: create(:user))
+    end
+  end
 end
