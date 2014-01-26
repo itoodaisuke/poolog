@@ -5,3 +5,4 @@ deploy:
   provider: heroku
   app: poolog
   api_key:
+    secure: TWFmrLIvSuLcahO6lEpPmE2ASWqV69yD3Q77FgzHhZs2rnJt7vauwmXh7wicJgt/gbcq4Bgxm9jgD/866BqLN4TcyeDTIFS9ddtdb2RViel1vLt5ejYAR74C6QqhvF9AHLjRK3DNcNSXU42n+wUC0l2ylah3pSgmfZOjTqzU310=
