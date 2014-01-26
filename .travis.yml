@@ -1,0 +1,7 @@
+language: ruby
+rvm:
+  - 2.0.0
+deploy
+  provider: heroku
+  app: poolog
+  api_key:

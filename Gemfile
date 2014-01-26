@@ -42,6 +42,7 @@ group :development do
 end
 
 group :test do
+  gem 'rake'
   gem 'faker'
   gem 'capybara'
   gem 'database_cleaner'
@@ -52,6 +53,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'travis'
   gem 'rspec-rails'
   gem 'guard-rspec'
   gem 'guard-bundler'
