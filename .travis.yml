@@ -2,7 +2,6 @@ language: ruby
 rvm:
   - 2.0.0
 before_script:
-  - psql -c "CREATE USER poolog" -U postgres
   - psql -c "CREATE ROLE poolog with createdb" -U postgres
 deploy:
   provider: heroku
