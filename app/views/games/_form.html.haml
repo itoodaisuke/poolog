@@ -4,8 +4,22 @@
       %li.pull-left= link_to t('.cancel', default: t("helpers.links.cancel")), games_path
       %li.pull-right= f.button :submit, class: 'btn-default'
 
-  %h3= Date.today.strftime("%b %d, %Y")
+  - date = @game.party.date || Date.today
+  %h3= date.strftime("%b %d, %Y")
   %ul.list
+    -# Place
+    = f.simple_fields_for :party do |p|
+      %li= p.input :date, as: :calendar, input_html: {value: @game.party.date ||= Date.today}, label: false, wrapper_html: {class: 'calendar'}
+      = p.input :user_id, as: :hidden, input_html: {value: current_user.id}
+      = p.simple_fields_for :place do |l|
+        %li
+          %div.form-group.place-form
+            %div.form-group
+              %div= @game.party.place.try(:name)
+        = l.input :foursquare_id, as: :hidden, input_html: {value: @game.party.place.try(:foursquare_id)}, wrapper_html: {class: 'place'}
+        = l.input :name, as: :hidden, input_html: {value: ''}, wrapper_html: {class: 'place'}
+      = render 'games/place_select'
+
     -# Member
     - user_1 = (action_name == 'new' || @game.joined_by?(current_user)) ? current_user : @game.users.first
     - user_2 = @game.opponent(user_1)
@@ -37,19 +51,6 @@
               %div
         = u.association :user, as: :hidden, input_html: {value: ''}, label: false
     = render 'games/member_select'
-
-    -# Place
-    = f.simple_fields_for :party do |p|
-      %li= p.input :date, as: :calendar, input_html: {value: @game.party.date ||= Date.today}, label: false, wrapper_html: {class: 'calendar'}
-      = p.input :user_id, as: :hidden, input_html: {value: current_user.id}
-      = p.simple_fields_for :place do |l|
-        %li
-          %div.form-group.place-form
-            %div.form-group
-              %div= @game.party.place.try(:name)
-        = l.input :foursquare_id, as: :hidden, input_html: {value: @game.party.place.try(:foursquare_id)}, wrapper_html: {class: 'place'}
-        = l.input :name, as: :hidden, input_html: {value: ''}, wrapper_html: {class: 'place'}
-      = render 'games/place_select'
 
     %li= f.input :rule, collection: ['Eight-ball', 'Nine-ball'], label: false, wrapper_html: {class: 'rule'}
     %li= f.input :video_id, as: :url, label: false, wrapper_html: {class: 'video'}, placeholder: 'Youtube Video URL'

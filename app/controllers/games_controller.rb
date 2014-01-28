@@ -19,7 +19,7 @@ class GamesController < ApplicationController
   def new
     @game = Game.new
     @game.game_records.build
-    @game.build_party
+    @game.party = Party.where(user_id: current_user.id).where(date: Date.today).first || @game.build_party
   end
 
   # GET /games/1/edit
@@ -118,7 +118,7 @@ class GamesController < ApplicationController
       for i in 0..1 do
         user_data = user_params[:game_records_attributes]["#{i}"]
         user = User.find_or_create(user_data)
-        params[:game][:game_records_attributes]["#{i}"][:user_id] = user.id #user_idにuidが入ってるのでほんとのuser_idに置き換え
+        params[:game][:game_records_attributes]["#{i}"][:user_id] = user.try(:id) #user_idにuidが入ってるのでほんとのuser_idに置き換え
       end
     end
 

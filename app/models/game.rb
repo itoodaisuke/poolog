@@ -7,6 +7,7 @@ class Game < ActiveRecord::Base
   accepts_nested_attributes_for :party
 
   validates :party, associated: true
+  validates :game_records, associated: true
   validates :video_id, length: {is: 11}, if: "video_id.present?"
 
   # YoutubeのURLからVideoIDだけ抜き出して保存

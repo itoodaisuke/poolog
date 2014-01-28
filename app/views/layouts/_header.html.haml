@@ -1,26 +1,45 @@
 = nav_bar :responsive=>true, :fixed=>:top, :brand=>"POOLOG" do
-  = menu_group pull: :right do
-    - if user_signed_in?
-      = menu_text do
-        = profile_img(current_user)
-        = current_user.email
+  %div.hidden-xs.hidden-sm
+    = menu_group pull: :right do
+      - if user_signed_in?
+        = menu_text do
+          = profile_img(current_user)
+          = current_user.email
+        %li
+          %i.icon-signout
+          = link_to "Logout".html_safe, destroy_user_session_path, method: :delete
+      - else
+        %li
+          %i.icon-facebook
+          = link_to "Login with Facebook".html_safe, omniauth_authorize_path('user', 'facebook')
+  %div
+    = menu_group pull: :left do
+      - if user_signed_in?
+        %div.visible-xs
+          = menu_text do
+            = profile_img(current_user)
+            = current_user.email
+        %li.visible-xs
+          %i.icon-signout
+          = link_to "Logout".html_safe, destroy_user_session_path, method: :delete
+      - else
+        %li.visible-xs
+          %i.icon-facebook
+          = link_to "Login with Facebook".html_safe, omniauth_authorize_path('user', 'facebook')
       %li
-        %i.icon-signout
-        = link_to "Logout".html_safe, destroy_user_session_path, method: :delete
-    - else
-      = menu_item "Login with Facebook", omniauth_authorize_path('user', 'facebook')
-  = menu_group pull: :left do
-    %li
-      %i.icon-bar-chart
-      = link_to "Record".html_safe, new_game_path
-    %li
-      %i.icon-user
-      = link_to "Friend".html_safe, new_game_path
-    %li
-      %i.icon-facetime-video
-      = link_to "Video".html_safe, new_game_path
-    %li
-      %i.icon-group
-      = link_to "Group".html_safe, new_game_path
+        %i.icon-plus
+        = link_to "New Game".html_safe, new_game_path
+      -# %li
+      -#   %i.icon-bar-chart
+      -#   = link_to "Record".html_safe, new_game_path
+      -# %li
+      -#   %i.icon-user
+      -#   = link_to "Friend".html_safe, new_game_path
+      -# %li
+      -#   %i.icon-facetime-video
+      -#   = link_to "Video".html_safe, new_game_path
+      -# %li
+      -#   %i.icon-group
+      -#   = link_to "Group".html_safe, new_game_path
 %div.navbar-rightbutton.visible-xs
   = link_to "<i class='icon-plus'></i>".html_safe, new_game_path

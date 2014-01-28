@@ -7,7 +7,7 @@ $POMEGRANATE: #C0392B;
 $TURQUOISE: #1ABC9C;
 $BILLIARD-GREEN: #12945E;
 $SUN-FLOWER: #F1C40F;
-$CLOUD: #ECF0F1;
+$CLOUDS: #ECF0F1;
 $GREEN-SEA: #16A085;
 
 $screen-xs-max: 480px;
@@ -112,11 +112,6 @@ input[type="date"].form-control, input[type="date"].form-control:focus { cursor:
   line-height: 45px;
   height: 45px;
   padding: 0 10px;
-  .no-button {
-    background: none;
-    border: none;
-    padding: 0;
-  }
   a, a:hover, a:visited {
     color: #333;
     text-decoration: none;
@@ -325,6 +320,7 @@ h3 {
 
 
 .login {
+  padding: 0 10px;
   a:hover { text-decoration: none; }
   li {
     margin: 20px auto 0;
@@ -414,7 +410,7 @@ h3 {
   }
   &.lose {
     color: #fff;
-    background: $CLOUD;
+    background: $CLOUDS;
   }
 }
 

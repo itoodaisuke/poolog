@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   end
 
   def self.find_or_create(user_param)
+    return nil if user_param[:user_id].blank?
     User.find_or_create_by(uid: user_param[:user_id]) do |user|
       user.provider = 'facebook'
       user.name = user_param[:user_name]
