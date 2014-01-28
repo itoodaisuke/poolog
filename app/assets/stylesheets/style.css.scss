@@ -6,9 +6,19 @@ $ALIZARIN: #E74C3C;
 $POMEGRANATE: #C0392B;
 $TURQUOISE: #1ABC9C;
 $BILLIARD-GREEN: #12945E;
+$SUN-FLOWER: #F1C40F;
+$CLOUD: #ECF0F1;
+$GREEN-SEA: #16A085;
 
 $screen-xs-max: 480px;
 $screen-sm-min: 481px;
+$screen-md-min: 751px;
+
+/* font */
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+  h1, h2, h3, h4, h5, h6 { font-weight: lighter; }
+}
 
 /* Form */
 .place-form, .member-form,
@@ -97,9 +107,27 @@ input[type="date"].form-control, input[type="date"].form-control:focus { cursor:
 }
 
 
+/* Sub Menu Nav */
+.sub-nav {
+  line-height: 45px;
+  height: 45px;
+  padding: 0 10px;
+  .no-button {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+  a, a:hover, a:visited {
+    color: #333;
+    text-decoration: none;
+  }
+}
+
+
 h3 {
   color: #fff;
   background: $WET-ASPHALT;
+  // background: #333;
   padding: 10px 0 10px 10px;
   margin-bottom: 0;
   font-size: large;
@@ -217,6 +245,29 @@ h3 {
 }
 
 
+/* Top Margin */
+@media (min-width: $screen-md-min) {
+  .col-lg-3, .col-lg-9 { margin-top: 20px; }
+}
+
+/* NAVBAR */
+.navbar-default {
+  background: $TURQUOISE;
+  border-color: rgba(0,0,0,0.2);
+  color: #fff;
+  .navbar-brand, .navbar-brand:hover, .navbar-text { color: #fff; }
+  .navbar-toggle .icon-bar { background-color: #fff; }
+  .navbar-nav li {
+    a, a:visited, a:hover { color: #fff; }
+  }
+  @media (min-width: $screen-md-min) {
+    .navbar-brand, .navbar-brand:hover {
+      background: $GREEN-SEA;
+    }
+  }
+}
+
+
 /*****************************************************************
 * Modal Window
 *****************************************************************/
@@ -258,7 +309,7 @@ h3 {
 *****************************************************************/
 #home-body {
   padding-top: 80px;
-  background: $BILLIARD-GREEN;
+  background: $GREEN-SEA;
 }
 #home {
   .home-box {
@@ -278,17 +329,17 @@ h3 {
   li {
     margin: 20px auto 0;
     padding: 15px;
-    color: $BILLIARD-GREEN;
+    color: $GREEN-SEA;
     line-height: 1.5em;
     font-size: 1.5em;
-    border: 3px solid $BILLIARD-GREEN;
+    border: 3px solid $GREEN-SEA;
     border-radius: 10px;
     &:hover { opacity: 0.9; }
     @media (min-width: $screen-sm-min) {
       padding: 15px 50px;
       display: inline-block;
     }
-    border: 3px solid $BILLIARD-GREEN;
+    border: 3px solid $GREEN-SEA;
   }
   .facebook {
     background: #fff;
@@ -302,7 +353,7 @@ h3 {
 *****************************************************************/
 #switch-nav {
   width: 90%;
-  margin: 0px auto 20px auto;
+  margin: 20px auto;
 
   ul {
     margin: 0;
@@ -359,10 +410,11 @@ h3 {
   text-align: center;
   &.win {
     color: #fff;
-    background: $TURQUOISE;
+    background: $SUN-FLOWER;
   }
   &.lose {
-    color: $TURQUOISE;
+    color: #fff;
+    background: $CLOUD;
   }
 }
 

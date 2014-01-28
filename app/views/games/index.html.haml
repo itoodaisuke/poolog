@@ -2,12 +2,12 @@
 - title = model_class.model_name.human.pluralize.titleize
 - provide(:title, title)
 
-%section#switch-nav.clearfix
-  %ul
-    = link_to "#" do
-      %li.active Yours
-    = link_to "#" do
-      %li All
+-# %section#switch-nav.clearfix
+-#   %ul
+-#     = link_to "#" do
+-#       %li.active Yours
+-#     = link_to "#" do
+-#       %li All
 
 %section#game-index
   - if current_user.present?
