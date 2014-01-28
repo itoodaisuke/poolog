@@ -1,7 +1,8 @@
 = simple_form_for @game, html: {class: 'form-horizontal'} do |f|
   %nav.sub-nav
     %ul.clearfix
-      %li.pull-left= link_to t('.cancel', default: t("helpers.links.cancel")), games_path
+      - back_link = (@game.new_record?) ? games_path : game_path(@game)
+      %li.pull-left= link_to t('.cancel', default: t("helpers.links.cancel")), back_link
       %li.pull-right= f.button :submit, class: 'btn-default'
 
   - date = @game.party.date || Date.today
@@ -54,6 +55,3 @@
 
     %li= f.input :rule, collection: ['Eight-ball', 'Nine-ball'], label: false, wrapper_html: {class: 'rule'}
     %li= f.input :video_id, as: :url, label: false, wrapper_html: {class: 'video'}, placeholder: 'Youtube Video URL'
-    -# .form-actions
-    -#   = f.button :submit, class: 'btn-primary btn-block btn-lg'
-    -#   = link_to t('.cancel', default: t("helpers.links.cancel")), games_path, class: 'btn btn-block btn-default'

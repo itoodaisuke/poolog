@@ -12,6 +12,7 @@ $GREEN-SEA: #16A085;
 
 $screen-xs-max: 480px;
 $screen-sm-min: 481px;
+$screen-sm-max: 750px;
 $screen-md-min: 751px;
 
 /* font */
@@ -243,6 +244,9 @@ h3 {
 /* Top Margin */
 @media (min-width: $screen-md-min) {
   .col-lg-3, .col-lg-9 { margin-top: 20px; }
+}
+@media (max-width: $screen-sm-max) {
+  .alert { border-radius: 0; }
 }
 
 /* NAVBAR */
