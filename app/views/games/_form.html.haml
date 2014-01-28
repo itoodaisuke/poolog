@@ -21,16 +21,16 @@
       = render 'games/place_select'
 
     -# Member
-    - user_1 = (action_name == 'new' || @game.joined_by?(current_user)) ? current_user : @game.users.first
+    - user_1 = (action_name == 'new' || action_name == 'create' || @game.joined_by?(current_user)) ? current_user : @game.users.first
     - user_2 = @game.opponent(user_1)
 
     - user = user_1
     = f.simple_fields_for :game_records do |u|
-      - winner = user == @game.winner
+      - winner = (user == @game.winner) ? true : false
       %li.members
         = u.input :winner, as: :hidden, label: false, wrapper_html: {class: 'winner'}, input_html: {value: winner}
         = u.input :user_name, as: :hidden, label: false, input_html: {value: user.try(:name)}
-        - if winner
+        - if winner == true
           %div.winner-form.active
         - else
           %div.winner-form

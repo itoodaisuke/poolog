@@ -29,6 +29,7 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
+    set_party_date
     set_user_data
 
     @game = Game.new(game_params)
@@ -42,6 +43,7 @@ class GamesController < ApplicationController
       else
         set_member_histories
         set_place_histories
+        flash.now[:alert] = "Failed on saving the game."
         format.html { render action: 'new' }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
@@ -51,6 +53,7 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
   def update
+    set_party_date
     set_user_data
 
     @game.party = Party.where(user_id: current_user.id).where(date: party_params[:date]).first || @game.build_party(party_params)
@@ -62,6 +65,9 @@ class GamesController < ApplicationController
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }
         format.json { head :no_content }
       else
+        set_member_histories
+        set_place_histories
+        flash.now[:alert] = "Failed on saving the game."
         format.html { render action: 'edit' }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
@@ -119,6 +125,14 @@ class GamesController < ApplicationController
         user_data = user_params[:game_records_attributes]["#{i}"]
         user = User.find_or_create(user_data)
         params[:game][:game_records_attributes]["#{i}"][:user_id] = user.try(:id) #user_idにuidが入ってるのでほんとのuser_idに置き換え
+      end
+    end
+
+    def set_party_date
+      begin
+        Date.parse(party_params[:date])
+      rescue
+        params[:game][:party_attributes][:date] = nil
       end
     end
 
