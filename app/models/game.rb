@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class Game < ActiveRecord::Base
   has_many :game_records
   has_many :users, through: :game_records
@@ -19,15 +20,16 @@ class Game < ActiveRecord::Base
   end
 
   def joined_by?(user)
-    return self.users.include?(user)
+    self.users.include?(user)
   end
 
   def winner
-    return self.game_records.find_by(winner: true).try(:user)
+    self.game_records.find_by(winner: true).try(:user)
   end
 
   def opponent(current_user)
-    return nil unless self.joined_by?(current_user)
-    return self.game_records.where.not(user_id: current_user.id).first.try(:user)
+    if self.joined_by?(current_user)
+      self.game_records.where.not(user_id: current_user.id).first.try(:user)
+    end
   end
 end
