@@ -46,7 +46,8 @@ describe GamesController do
 
     describe 'GET #edit' do
       before :each do
-        @game = create(:game)
+        @party = create(:party, user: @user)
+        @game = create(:game, party: @party)
       end
 
       it 'assigns the requested game to @game' do
@@ -135,7 +136,8 @@ describe GamesController do
 
     describe 'DELETE #destroy' do
       before :each do
-        @game = create(:game)
+        @party = create(:party, user: @user)
+        @game = create(:game, party: @party)
       end
 
       it 'deletes the game from db' do

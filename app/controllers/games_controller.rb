@@ -24,6 +24,7 @@ class GamesController < ApplicationController
 
   # GET /games/1/edit
   def edit
+    redirect_to @game, alert: "You can't edit this game." if @game.party.user != current_user
   end
 
   # POST /games
@@ -77,6 +78,8 @@ class GamesController < ApplicationController
   # DELETE /games/1
   # DELETE /games/1.json
   def destroy
+    redirect_to @game, alert: "You can't edit this game." if @game.party.user != current_user
+
     @game.destroy
     respond_to do |format|
       format.html { redirect_to games_url }
