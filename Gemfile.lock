@@ -129,6 +129,7 @@ GEM
       multi_json (~> 1.0)
       net-http-persistent (>= 2.7)
       net-http-pipeline
+    google-analytics-rails (0.0.4)
     guard (2.2.5)
       formatador (>= 0.2.4)
       listen (~> 2.1)
@@ -380,6 +381,7 @@ DEPENDENCIES
   foreman
   foursquare2
   fuubar
+  google-analytics-rails
   guard-bundler
   guard-rspec
   haml-rails
