@@ -81,9 +81,30 @@ describe GamesController do
       end
 
       context 'with invalid attributes' do
-        it 'does not save the new game in db' do
+        it 'does not save the new game with invalid party' do
           expect{
             post :create, game: attributes_for(:game, party_attributes: @invalid_party, game_records_attributes: @game_records )
+          }.to_not change(Game, :count)
+        end
+
+        it 'does not save the new game when two users are same' do
+          @invalid_game_records =  {
+            "0" => attributes_for(:game_record_for_controller, user_id: @user.id),
+            "1" => attributes_for(:game_record_for_controller, user_id: @user.id)
+          }
+
+          expect{
+            post :create, game: attributes_for(:game, party_attributes: @party, game_records_attributes: @invalid_game_records )
+          }.to_not change(Game, :count)
+        end
+
+        it 'does not save the new game when game_record is single' do
+          @invalid_game_records =  {
+            "0" => attributes_for(:game_record_for_controller, user_id: @user.id)
+          }
+
+          expect{
+            post :create, game: attributes_for(:game, party_attributes: @party, game_records_attributes: @invalid_game_records )
           }.to_not change(Game, :count)
         end
 
@@ -97,8 +118,8 @@ describe GamesController do
     describe 'PATCH #update' do
       before :each do
         @game = create(:game)
-        opponent = create(:user)
-        set_game_attributes(@user, opponent)
+        @opponent = create(:user)
+        set_update_game_attributes(@user, @opponent, @game)
       end
 
       context 'with valid attributes' do
@@ -114,17 +135,37 @@ describe GamesController do
         end
 
         it 'redirects to the updated game' do
+          @game_records =  {
+            "0" => attributes_for(:game_record_for_controller, id: @game.game_records.first.id, user_id: @user.id, game: @game),
+            "1" => attributes_for(:game_record_for_controller, id: @game.game_records.last.id, user_id: @opponent.id, game: @game)
+          }
+
           patch :update, id: @game, game: attributes_for(:game, rule: 'Nine-ball', party_attributes: @party, game_records_attributes: @game_records )
           expect(response).to redirect_to @game
         end
       end
 
       context 'with invalid attributes' do
-        it 'does not change the games attributes' do
+        before :each do
+          @invalid_party = attributes_for(:party, user_id: nil, place: @place)
+        end
+
+        it 'does not change the games attributes with invalid party' do
           patch :update, id: @game, game: attributes_for(:game, rule: 'Nine-ball', party_attributes: @invalid_party, game_records_attributes: @game_records )
           @game.reload
           expect(@game.rule).to_not eq('Nine-ball')
           expect(@game.rule).to eq('Eight-ball')
+        end
+
+        it 'does not save the new game when two users are same' do
+          @invalid_game_records =  {
+            "0" => attributes_for(:game_record_for_controller, user_id: @user.id),
+            "1" => attributes_for(:game_record_for_controller, user_id: @user.id)
+          }
+
+          expect{
+            post :create, game: attributes_for(:game, party_attributes: @party, game_records_attributes: @invalid_game_records )
+          }.to_not change(Game, :count)
         end
 
         it 're-renders the :edit template' do

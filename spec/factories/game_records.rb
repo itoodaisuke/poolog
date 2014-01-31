@@ -2,7 +2,6 @@
 
 FactoryGirl.define do
   factory :game_record do
-    association :game
     association :user
 
     factory :win_record do

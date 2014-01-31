@@ -9,7 +9,14 @@ class Game < ActiveRecord::Base
 
   validates :party, associated: true
   validates :game_records, associated: true
+  validate  :joined_by_two_users
   validates :video_id, length: {is: 11}, if: "video_id.present?"
+
+  def joined_by_two_users
+    if game_records.map(&:user).uniq.count != 2
+      errors.add(:game_records, :invalid)
+    end
+  end
 
   # YoutubeのURLからVideoIDだけ抜き出して保存
   before_validation do

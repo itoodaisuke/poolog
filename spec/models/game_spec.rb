@@ -11,6 +11,11 @@ describe Game do
     expect(game.game_records.count).to eq 2
   end
 
+  it "has two different users" do
+    game = create(:game)
+    expect(game.users.uniq.count).to eq 2
+  end
+
   describe 'joined_by?' do
     before :each do
       @game = create(:game)

@@ -124,8 +124,7 @@ class GamesController < ApplicationController
 
     # GameRecordの2レコードに対してuser_idを正しい値に変更。userが存在しなければ新規作成しておく。
     def set_user_data
-      for i in 0..1 do
-        user_data = user_params[:game_records_attributes]["#{i}"]
+      user_params[:game_records_attributes].each do |i, user_data|
         user = User.find_or_create(user_data)
         params[:game][:game_records_attributes]["#{i}"][:user_id] = user.try(:id) #user_idにuidが入ってるのでほんとのuser_idに置き換え
       end

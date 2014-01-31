@@ -5,9 +5,9 @@ FactoryGirl.define do
     association :party
     rule "Eight-ball"
 
-    after(:create) do |game|
-      create(:win_record, game: game, user: create(:user))
-      create(:game_record, game: game, user: create(:user))
+    after(:build) do |game|
+      game.game_records << build(:game_record, user: create(:user))
+      game.game_records << build(:win_record, user: create(:user))
     end
   end
 
@@ -15,9 +15,9 @@ FactoryGirl.define do
     association :party
     rule "Eight-ball"
 
-    after(:create) do |game|
-      create(:game_record, game: game, user: create(:user))
-      create(:game_record, game: game, user: create(:user))
+    after(:build) do |game|
+      game.game_records << build(:game_record, user: create(:user))
+      game.game_records << build(:game_record, user: create(:user))
     end
   end
 
@@ -25,9 +25,9 @@ FactoryGirl.define do
     association :party
     rule "Eight-ball"
 
-    after(:create) do |game|
-      create(:win_record, game: game, user: create(:user))
-      create(:win_record, game: game, user: create(:user))
+    after(:build) do |game|
+      game.game_records << build(:win_record, user: create(:user))
+      game.game_records << build(:win_record, user: create(:user))
     end
   end
 end
