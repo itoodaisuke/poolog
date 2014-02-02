@@ -102,7 +102,7 @@ h3 {
     font-style: normal;
   }
   &.active, &:hover {
-    background: $TURQUOISE;
+    background: $SUN-FLOWER;
     color: #fff;
   }
 }
@@ -544,6 +544,7 @@ h3 {
 
   .list li {
     height: 35px;
+    overflow: hidden;
   }
   .list-result {
     float: none;

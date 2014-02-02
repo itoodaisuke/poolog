@@ -3,7 +3,7 @@
     %ul.clearfix
       - back_link = (@game.new_record?) ? parties_path : game_path(@game)
       %li.pull-left= link_to t('.cancel', default: t("helpers.links.cancel")), back_link
-      %li.pull-right= f.button :submit, class: 'btn-default'
+      %li.pull-right= f.button :submit, class: 'btn-danger'
 
   - date = @game.party.date || Date.today
   %ul.list

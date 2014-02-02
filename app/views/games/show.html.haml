@@ -6,10 +6,13 @@
   %ul.clearfix
     %li.pull-left= link_to t('.back', :default => t("helpers.links.back")), party_path(@game.party)
     - if @game.party.user == current_user
-      %li.pull-right= link_to t('.edit', :default => t("helpers.links.edit")), edit_game_path(@game)
+      %li.pull-right= link_to t('.edit', :default => t("helpers.links.edit")), edit_game_path(@game), class: 'btn btn-default'
 
 %section#game-show
-  %h3= @game.party.date.strftime("%b %d, %Y")
+  %h3
+    = @game.party.date.strftime("%b %d, %Y")
+    %span.title-sub @#{@game.party.place.try(:name) || '---'}
+
   %ul.list
     %li.result.clearfix
       - @game.users.each do |user|
@@ -26,14 +29,8 @@
                 %i.icon-remove
                 LOSE
     %li
-      %i.icon-calendar
-      %span= @game.party.date.strftime("%b %d, %Y")
-    %li
       %i.icon-tag
       %span= @game.rule
-    %li
-      %i.icon-map-marker
-      %span= @game.party.place.try(:name)
 
   - if @game.video_id.present?
     %div.youtube-wrapper

@@ -3,5 +3,5 @@
 - provide(:title, title)
 
 = render :partial => "form"
-%div.form-actions
-  = link_to t('.destroy', :default => t("helpers.links.destroy")), game_path(@game), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-block'
+-# %div.form-actions
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), game_path(@game), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, class: 'btn btn-warning'

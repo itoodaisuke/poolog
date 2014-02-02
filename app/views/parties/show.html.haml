@@ -45,11 +45,16 @@
           %li.clearfix
             - game.users.each do |user|
               - if game.winner == user
-                %div.list-result.win
-                  %i.icon-trophy
-              - else
-                %div.list-result
-                  %i.icon-minus
-              = profile_img(user)
-              %p.list-name
-                = user.name
+                %i.icon-trophy
+              = user.name
+          -# %li.clearfix
+          -#   - game.users.each do |user|
+          -#     - if game.winner == user
+          -#       %div.list-result.win
+          -#         %i.icon-trophy
+          -#     - else
+          -#       %div.list-result
+          -#         %i.icon-minus
+          -#     = profile_img(user)
+          -#     %p.list-name
+          -#       = user.name
