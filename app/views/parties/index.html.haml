@@ -16,7 +16,9 @@
       %ul.list
         = link_to party_path(party) do
           %li.list-title
-            %h3 #{party.date.strftime("%b %d, %Y")} @#{party.place.try(:name) || '---'}
+            %h3
+              =party.date.strftime("%b %d, %Y")
+              %span.title-sub @#{party.place.try(:name) || '---'}
         %li
           %div.overflow-hidden
             - party.members.each do |member|

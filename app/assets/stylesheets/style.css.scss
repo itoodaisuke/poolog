@@ -10,6 +10,8 @@ $SUN-FLOWER: #F1C40F;
 $CLOUDS: #ECF0F1;
 $GREEN-SEA: #16A085;
 
+$WHITE-SMOKE: #f5f5f5;
+
 $screen-xs-max: 480px;
 $screen-sm-min: 481px;
 $screen-sm-max: 750px;
@@ -63,13 +65,18 @@ input[type="date"].form-control, input[type="date"].form-control:focus { cursor:
 
 .party-attr { background: #f6f6f6; }
 h3 {
+  font-family: 'Source Sans Pro', sans-serif;
   position: relative;
-  span {
+  .edit {
     cursor: pointer;
     position: absolute;
     right: 15px;
     top: 5px;
     line-height: 30px;
+  }
+  .title-sub {
+    font-size: smaller;
+    color: #888;
   }
 }
 
@@ -114,9 +121,7 @@ h3 {
 
 
 h3 {
-  color: #fff;
-  background: $WET-ASPHALT;
-  // background: #333;
+  background: $WHITE-SMOKE;
   padding: 10px 30px 10px 10px;
   margin-bottom: 0;
   font-size: large;
@@ -159,7 +164,7 @@ h3 {
       line-height: 39px;
       top: 0;
       right: 15px;
-      color: #efefef;
+      color: #DDD;
       font-family: FontAwesome;
       font-weight: light;
       font-style: normal;

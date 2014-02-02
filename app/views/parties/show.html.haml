@@ -6,7 +6,9 @@
   %ul.clearfix
     %li.pull-left= link_to t('.back', default: t("helpers.links.back")), parties_path
 
-%h3 #{@party.date.strftime("%b %d, %Y")} @#{@party.place.try(:name) || '---'}
+%h3
+  =@party.date.strftime("%b %d, %Y")
+  %span.title-sub @#{@party.place.try(:name) || '---'}
 
 
 %ul.nav.nav-tabs#custom-nav
