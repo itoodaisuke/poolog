@@ -3,8 +3,7 @@ class PartiesController < ApplicationController
   before_action :set_party, only: [:show]
 
   def index
-    # @parties = Party.joined_by(current_user).order(date: :desc)
-    @parties = Party.order(date: :desc)
+    @parties = Party.order(date: :desc).page params[:page]
   end
 
   def show

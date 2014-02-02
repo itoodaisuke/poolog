@@ -1,7 +1,7 @@
 = simple_form_for @game, html: {class: 'form-horizontal'} do |f|
   %nav.sub-nav
     %ul.clearfix
-      - back_link = (@game.new_record?) ? games_path : game_path(@game)
+      - back_link = (@game.new_record?) ? parties_path : game_path(@game)
       %li.pull-left= link_to t('.cancel', default: t("helpers.links.cancel")), back_link
       %li.pull-right= f.button :submit, class: 'btn-default'
 
