@@ -403,6 +403,49 @@ h3 {
   }
 }
 
+#custom-nav {
+  width: 90%;
+  margin: 20px auto;
+  padding: 0;
+  border: 0;
+
+  li {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 30px;
+    border: 1px solid $TURQUOISE;
+    text-align: center;
+    color: $TURQUOISE;
+    line-height: 30px;
+
+    &:first-child {
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+    &:last-child {
+      border-top-right-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+
+    &.active, &:hover {
+      background: $TURQUOISE;
+      a { color: #fff; }
+    }
+
+    a {
+      line-height: 30px;
+      padding: 0;
+      margin: 0;
+      border: none;
+      border-radius: 0;
+      background: none;
+      color: $TURQUOISE;
+    }
+
+  }
+}
+
 /*****************************************************************
 * Game Index
 *****************************************************************/
@@ -491,3 +534,26 @@ h3 {
   overflow: hidden;
 }
 
+
+/*****************************************************************
+* Party Show
+*****************************************************************/
+#party-games {
+  img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .list li {
+    height: 35px;
+  }
+  .list-result {
+    float: none;
+    display: inline-block;
+    line-height: 35px;
+    vertical-align: top;
+  }
+  i.icon-minus {
+    color: transparent;
+  }
+}

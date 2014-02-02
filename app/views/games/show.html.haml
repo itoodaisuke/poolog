@@ -4,7 +4,7 @@
 
 %nav.sub-nav
   %ul.clearfix
-    %li.pull-left= link_to t('.back', :default => t("helpers.links.back")), games_path
+    %li.pull-left= link_to t('.back', :default => t("helpers.links.back")), party_path(@game.party)
     - if @game.party.user == current_user
       %li.pull-right= link_to t('.edit', :default => t("helpers.links.edit")), edit_game_path(@game)
 

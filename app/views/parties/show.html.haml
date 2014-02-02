@@ -5,35 +5,49 @@
 %nav.sub-nav
   %ul.clearfix
     %li.pull-left= link_to t('.back', default: t("helpers.links.back")), parties_path
-    -# %li.pull-right= f.button :submit, class: 'btn-default'
 
 %h3 #{@party.date.strftime("%b %d, %Y")} @#{@party.place.try(:name) || '---'}
 
--# %section#switch-nav.clearfix
--#   %ul
--#     = link_to "#" do
--#       %li.active Ranking
--#     = link_to "#" do
--#       %li Games
 
-%section
-  %ul.list
-    - current_rank  = 1
-    - current_score = 0
-    - @rankings.each_with_index do |ranking, i|
-      - current_rank = i+1 unless ranking[:wins] == current_score
-      - current_score = ranking[:wins]
-      %li
-        %div
-          - if current_rank == 1
-            %div.list-result.win
-              = current_rank
-          - else
-            %div.list-result.lose
-              = current_rank
+%ul.nav.nav-tabs#custom-nav
+  %li.active
+    %a(href="#party-ranking" data-toggle="tab") Ranking
+  %li
+    %a(href="#party-games" data-toggle="tab") Games
+%div.tab-content
+  %div#party-ranking.tab-pane.active
+    %ul.list
+      - current_rank  = 1
+      - current_score = 0
+      - @rankings.each_with_index do |ranking, i|
+        - current_rank = i+1 unless ranking[:wins] == current_score
+        - current_score = ranking[:wins]
+        %li
+          %div
+            - if current_rank == 1
+              %div.list-result.win
+                = current_rank
+            - else
+              %div.list-result.lose
+                = current_rank
 
-          = profile_img(ranking[:user])
-          %p= ranking[:user].name
-          %p.score
-            %span= ranking[:wins]
-            Wins
+            = profile_img(ranking[:user])
+            %p= ranking[:user].name
+            %p.score
+              %span= ranking[:wins]
+              Wins
+  %div#party-games.tab-pane
+    %ul.list
+      - @party.games.each do |game|
+        = link_to game_path(game) do
+          %li.clearfix
+            - game.users.each do |user|
+              - if game.winner == user
+                %div.list-result.win
+                  %i.icon-trophy
+              - else
+                %div.list-result
+                  %i.icon-minus
+              = profile_img(user)
+              %p.list-name
+                = user.name
