@@ -41,25 +41,6 @@ input[type="date"].form-control, input[type="date"].form-control:focus { cursor:
 .form-horizontal .form-group { margin: 0; }
 .form-actions { margin-top: 20px; }
 
-.select div:after, .place-form div:after, .member-form div:after {
-  display: inline-block;
-  position: absolute;
-  line-height: 45px;
-  top: 0;
-  color: #efefef;
-  font-family: FontAwesome;
-  font-weight: normal;
-  font-style: normal;
-  font-size: 2em;
-}
-.select div:after, .member-form div:after {
-  content: "\f107"; //angle-down
-  right: 15px;
-}
-.place-form div:after {
-  content: "\f105"; //angle-right
-  right: 18px;
-}
 .member-form { padding-left: 105px; }
 
 .form-group .form-group div:before {
@@ -79,6 +60,18 @@ input[type="date"].form-control, input[type="date"].form-control:focus { cursor:
 .rule .form-group div:before { content: "\f02b"; }
 .video .form-group div:before { content: "\f03d"; }
 .calendar .form-group div:before { content: "\f073"; }
+
+#party li { background: #f6f6f6; }
+h3 {
+  position: relative;
+  span {
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    line-height: 30px;
+  }
+}
 
 .winner-form {
   position: absolute;

@@ -6,20 +6,26 @@
       %li.pull-right= f.button :submit, class: 'btn-default'
 
   - date = @game.party.date || Date.today
-  %h3= date.strftime("%b %d, %Y")
   %ul.list
-    -# Place
-    = f.simple_fields_for :party do |p|
-      %li= p.input :date, as: :calendar, input_html: {value: @game.party.date ||= Date.today}, label: false, wrapper_html: {class: 'calendar'}
-      = p.input :user_id, as: :hidden, input_html: {value: current_user.id}
-      = p.simple_fields_for :place do |l|
-        %li
-          %div.form-group.place-form
-            %div.form-group
-              %div= @game.party.place.try(:name)
-        = l.input :foursquare_id, as: :hidden, input_html: {value: @game.party.place.try(:foursquare_id)}, wrapper_html: {class: 'place'}
-        = l.input :name, as: :hidden, input_html: {value: ''}, wrapper_html: {class: 'place'}
-      = render 'games/place_select'
+    %li.list-title
+      %h3(data-toggle="collapse" data-target="#party")
+        = date.strftime("%b %d, %Y")
+        %span
+          %i.icon-cog
+
+    -# Party Attr
+    %div#party.collapse.in
+      = f.simple_fields_for :party do |p|
+        %li= p.input :date, as: :calendar, input_html: {value: @game.party.date ||= Date.today}, label: false, wrapper_html: {class: 'calendar'}
+        = p.input :user_id, as: :hidden, input_html: {value: current_user.id}
+        = p.simple_fields_for :place do |l|
+          %li
+            %div.form-group.place-form
+              %div.form-group
+                %div= @game.party.place.try(:name)
+          = l.input :foursquare_id, as: :hidden, input_html: {value: @game.party.place.try(:foursquare_id)}, wrapper_html: {class: 'place'}
+          = l.input :name, as: :hidden, input_html: {value: ''}, wrapper_html: {class: 'place'}
+        = render 'games/place_select'
 
     -# Member
     - user_1 = (action_name == 'new' || action_name == 'create' || @game.joined_by?(current_user)) ? current_user : @game.users.first
