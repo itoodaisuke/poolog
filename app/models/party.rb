@@ -6,6 +6,11 @@ class Party < ActiveRecord::Base
   validates :user_id, presence: true
   validates :date, presence: true
 
+
+  def members
+    self.games.map{|g| g.users}.flatten.uniq
+  end
+
   def rankings
     rankings = []
     win_records = self.games.map{|g| g.winner}

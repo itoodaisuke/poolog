@@ -1,0 +1,23 @@
+- model_class = Party
+- title = model_class.model_name.human.titleize
+- provide(:title, title)
+
+
+%section#switch-nav.clearfix
+  %ul
+    = link_to "#" do
+      %li.active Yours
+    = link_to "#" do
+      %li Tournaments
+
+%section
+  - @parties.each do |party|
+    - if party.games.present?
+      %ul.list
+        = link_to party_path(party) do
+          %li.list-title
+            %h3 #{party.date.strftime("%b %d, %Y")} @#{party.place.try(:name) || '---'}
+        %li
+          %div.overflow-hidden
+            - party.members.each do |member|
+              = profile_img(member)

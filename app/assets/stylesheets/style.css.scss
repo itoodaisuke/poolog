@@ -124,7 +124,7 @@ h3 {
   color: #fff;
   background: $WET-ASPHALT;
   // background: #333;
-  padding: 10px 0 10px 10px;
+  padding: 10px 30px 10px 10px;
   margin-bottom: 0;
   font-size: large;
   margin-top: 0;
@@ -266,6 +266,11 @@ h3 {
   }
 }
 
+.overflow-hidden {
+  height: 75px;
+  overflow: hidden;
+}
+
 
 /*****************************************************************
 * Modal Window
@@ -343,6 +348,7 @@ h3 {
   }
   .facebook {
     background: #fff;
+    color: $GREEN-SEA;
     i { padding-right: 5px; }
   }
 }

@@ -4,7 +4,7 @@
 
 %nav.sub-nav
   %ul.clearfix
-    %li.pull-left= link_to t('.back', default: t("helpers.links.back")), games_path
+    %li.pull-left= link_to t('.back', default: t("helpers.links.back")), parties_path
     -# %li.pull-right= f.button :submit, class: 'btn-default'
 
 %h3 #{@party.date.strftime("%b %d, %Y")} @#{@party.place.try(:name) || '---'}

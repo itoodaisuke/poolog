@@ -1,8 +1,8 @@
 Poolog::Application.routes.draw do
+  root to: "static_pages#home"
   get "users/search_user"
   get "games/search_venues"
   get "static_pages/home"
-  root to: "static_pages#home"
   resources :games do
     get 'page/:page', action: :index, on: :collection
   end
