@@ -16,10 +16,10 @@
     -# Party Attr
     %div#party.collapse.in
       = f.simple_fields_for :party do |p|
-        %li= p.input :date, as: :calendar, input_html: {value: @game.party.date ||= Date.today}, label: false, wrapper_html: {class: 'calendar'}
+        %li.party-attr= p.input :date, as: :calendar, input_html: {value: @game.party.date ||= Date.today}, label: false, wrapper_html: {class: 'calendar'}
         = p.input :user_id, as: :hidden, input_html: {value: current_user.id}
         = p.simple_fields_for :place do |l|
-          %li
+          %li.party-attr
             %div.form-group.place-form
               %div.form-group
                 %div= @game.party.place.try(:name)
